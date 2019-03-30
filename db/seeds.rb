@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+if (!Admin.where(email: 'admin@admin.com').first)
+  Admin.create(email: 'admin@admin.com', password: '12345678')
+end
