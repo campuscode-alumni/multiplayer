@@ -13,6 +13,17 @@ feature 'Admin register game category' do
     expect(page).to have_content('Categoria Tiro cadastrada com sucesso!')
   end
 
+  scenario 'and name is mandatory' do
+    admin = create(:admin)
+
+    login_as admin, scope: :admin
+    visit new_game_category_path
+    fill_in 'Nome', with: ''
+    click_on 'Enviar'
+
+    expect(page).to have_content('Nome não pode ficar em branco')
+  end
+
   scenario 'and only logged admin can see button' do
     visit root_path
 
