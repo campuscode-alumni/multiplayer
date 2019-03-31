@@ -1,0 +1,6 @@
+
+<%= simple_form_for @company do |f| %>
+  <%= f.input :name %>
+  <%= f.input :logo, as: :file %>
+  <%= f.submit 'Enviar' %>
+<% end %>
