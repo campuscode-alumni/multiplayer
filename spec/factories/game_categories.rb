@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :game_category do
-    name { 'MyString' }
+    sequence(:name) { |i| "Tiro#{i}" }
   end
 end

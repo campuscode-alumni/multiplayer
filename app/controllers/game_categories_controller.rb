@@ -13,7 +13,7 @@ class GameCategoriesController < ApplicationController
   def successful_create
     redirect_to new_game_category_path
     flash[:notice] = "Categoria #{@new_game_category.name} \n
-                        cadastrada com sucesso!"
+                      cadastrada com sucesso!"
   end
 
   def params_category
