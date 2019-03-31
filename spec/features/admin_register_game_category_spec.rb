@@ -24,4 +24,23 @@ feature 'Admin register game category' do
 
     expect(current_path).to eq new_admin_session_path
   end
+
+  scenario 'and should have return button' do
+    admin = create(:admin)
+
+    login_as admin, scope: :admin
+    visit new_game_category_path
+
+    expect(page).to have_link('Voltar')
+  end
+
+  scenario 'and return button should go to root_path' do
+    admin = create(:admin)
+
+    login_as admin, scope: :admin
+    visit new_game_category_path
+    click_on 'Voltar'
+
+    expect(current_path).to eq root_path
+  end
 end
