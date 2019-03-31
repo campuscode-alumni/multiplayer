@@ -8,6 +8,7 @@ class GameCategoriesController < ApplicationController
   def create
     @new_game_category = GameCategory.new(params_category)
     return successful_create if @new_game_category.save
+    return render :new if !@new_game_category.save
   end
 
   private
