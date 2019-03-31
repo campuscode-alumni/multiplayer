@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Admin register game category' do
   scenario 'successfully' do
-    admin = create(:admin)
+    create(:admin)
 
     visit root_path
     click_on 'Cadastrar Categoria de Jogo'

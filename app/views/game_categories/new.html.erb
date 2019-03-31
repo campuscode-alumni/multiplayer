@@ -1,0 +1,6 @@
+<h2>Cadastrar Categoria de Jogo</h2>
+
+<%= simple_form_for @new_game_category do |new| %>
+  <%= new.input :name, label: 'Nome' %>
+  <%= new.submit 'Enviar' %>
+<% end %>
