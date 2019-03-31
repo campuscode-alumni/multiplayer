@@ -1,7 +1,7 @@
 pt-BR:
   activerecord:
     models:
-      game_category:
+      category:
     attributes:
-      game_category:
+      category:
         name: 'Nome'
