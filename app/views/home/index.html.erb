@@ -1,5 +1,5 @@
 <h1>Bem-vindo ao Multiplayer</h1>
 
-<% unless admin_signed_in? %>
+<% if admin_signed_in? %>
   <p><%= link_to 'Cadastrar Categoria de Jogo', new_game_category_path %>
 <% end %>

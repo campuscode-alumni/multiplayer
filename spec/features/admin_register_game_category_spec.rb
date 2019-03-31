@@ -18,4 +18,10 @@ feature 'Admin register game category' do
 
     expect(page).not_to have_content('Cadastrar Categoria de Jogo')
   end
+
+  scenario 'and only logged admin can register game category' do
+    visit new_game_category_path
+
+    expect(current_path).to eq root_path
+  end
 end
