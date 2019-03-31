@@ -24,6 +24,18 @@ feature 'Admin register game category' do
     expect(page).to have_content('Nome não pode ficar em branco')
   end
 
+  scenario 'and name is at use' do
+    create(:game_category, name: 'Tiro')
+    admin = create(:admin)
+
+    login_as admin, scope: :admin
+    visit new_game_category_path
+    fill_in 'Nome', with: 'Tiro'
+    click_on 'Enviar'
+
+    expect(page).to have_content('Nome já está em uso')
+  end
+
   scenario 'and only logged admin can see button' do
     visit root_path
 
