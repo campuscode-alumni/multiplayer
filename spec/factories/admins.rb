@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :admin do
-    sequence(:email) {|i| "email#{i}@admin.com"}
-    password { 8.times.map { Random.rand(10) }.join }
+    sequence(:email) { |i| "email#{i}@admin.com" }
+    password { Array.new(8) { Random.rand(10) }.join }
   end
 end
