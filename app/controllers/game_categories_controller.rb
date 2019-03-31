@@ -1,4 +1,6 @@
 class GameCategoriesController < ApplicationController
+  before_action :authenticate_admin!
+  
   def new
     @new_game_category = GameCategory.new
   end

@@ -22,6 +22,6 @@ feature 'Admin register game category' do
   scenario 'and only logged admin can register game category' do
     visit new_game_category_path
 
-    expect(current_path).to eq root_path
+    expect(current_path).to eq new_admin_session_path
   end
 end
