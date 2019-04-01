@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Admin register game category' do
+feature 'Admin register category' do
   scenario 'successfully' do
     admin = create(:admin)
 
@@ -17,7 +17,7 @@ feature 'Admin register game category' do
     admin = create(:admin)
 
     login_as admin, scope: :admin
-    visit new_game_category_path
+    visit new_category_path
     fill_in 'Nome', with: ''
     click_on 'Enviar'
 
@@ -25,11 +25,11 @@ feature 'Admin register game category' do
   end
 
   scenario 'and name is at use' do
-    create(:game_category, name: 'Tiro')
+    create(:category, name: 'Tiro')
     admin = create(:admin)
 
     login_as admin, scope: :admin
-    visit new_game_category_path
+    visit new_category_path
     fill_in 'Nome', with: 'Tiro'
     click_on 'Enviar'
 
@@ -43,7 +43,7 @@ feature 'Admin register game category' do
   end
 
   scenario 'and only logged admin can register game category' do
-    visit new_game_category_path
+    visit new_category_path
 
     expect(current_path).to eq new_admin_session_path
   end
@@ -52,7 +52,7 @@ feature 'Admin register game category' do
     admin = create(:admin)
 
     login_as admin, scope: :admin
-    visit new_game_category_path
+    visit new_category_path
 
     expect(page).to have_link('Voltar')
   end
@@ -61,7 +61,7 @@ feature 'Admin register game category' do
     admin = create(:admin)
 
     login_as admin, scope: :admin
-    visit new_game_category_path
+    visit new_category_path
     click_on 'Voltar'
 
     expect(current_path).to eq root_path
