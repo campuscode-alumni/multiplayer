@@ -1,6 +1,9 @@
+<h2>Cadastrar Empresa Fabricante</h2>
 
 <%= simple_form_for @company do |f| %>
   <%= f.input :name %>
   <%= f.input :logo, as: :file %>
   <%= f.submit 'Enviar' %>
 <% end %>
+
+<p><%= link_to 'Voltar', root_path %></p>
