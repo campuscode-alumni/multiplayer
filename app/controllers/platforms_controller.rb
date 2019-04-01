@@ -1,17 +1,17 @@
 class PlatformsController < ApplicationController
-    before_action :authenticate_admin!
+  before_action :authenticate_admin!
 
-    def index
-      @platforms = Platform.all
-    end
+  def index
+    @platforms = Platform.all
+  end
 
-    def show
-      @platform = Platform.find(params[:id])
-    end
+  def show
+    @platform = Platform.find(params[:id])
+  end
 
-    private
+  private
 
-    def params_platform
-      params.require(:platform).permit(:name)
-    end
+  def params_platform
+    params.require(:platform).permit(:name)
+  end
 end
