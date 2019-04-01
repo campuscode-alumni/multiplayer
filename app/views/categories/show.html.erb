@@ -1,8 +1,8 @@
 <h2>Categorias - <%= @category.name %></h2>
 
 <div>
-  <p><%= link_to 'Editar Categoria' %></p>
-  <p><%= link_to 'Deletar Categoria' %></p>
+  <p><%= link_to t('edit.category') %></p>
+  <p><%= link_to t('delete.category') %></p>
 </div>
 
-<%= link_to 'Voltar', categories_path %>
+<%= link_to t(:back), categories_path %>

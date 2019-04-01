@@ -14,8 +14,10 @@
     <nav>
       <% if admin_signed_in? %>
         <p>
-          <span>Logado como: <%= current_admin.email %></span>
-          <%= image_tag('/assets/admins/admin_star.png', title: 'Logado como Admin') %>
+          <span>
+            <%= "#{t(:authenticated_as)}: #{current_admin.email}" %>
+          </span>
+          <%= image_tag('/assets/admins/admin_star.png', title: t(:authenticated_as_admin)) %>
         </p>
         <%= link_to 'Logout', destroy_admin_session_path, method: :delete %>
       <% end %>

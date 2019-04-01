@@ -1,8 +1,8 @@
-<h2>Cadastrar Categoria de Jogo</h2>
+<h2><%= t('register.category') %></h2>
 
 <%= simple_form_for @new_category do |new| %>
   <%= new.input :name %>
-  <%= new.submit 'Enviar' %>
+  <%= new.submit t(:submit) %>
 <% end %>
 
-<p><%= link_to 'Voltar', root_path %></p>
+<p><%= link_to t(:back), root_path %></p>

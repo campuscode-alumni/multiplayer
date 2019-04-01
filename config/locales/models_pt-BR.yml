@@ -2,11 +2,14 @@ pt-BR:
   activerecord:
     models:
       admin: 'Admin'
+      category: 'Categoria'
       company: 'Empresa'
     attributes:
       admin:
         email: 'Email'
         password: 'Senha'
+      category:
+        name: 'Nome'
       company:
         name: 'Nome'
         logo: 'Logo'

@@ -1,8 +1,8 @@
-<h1>Bem-vindo ao Multiplayer</h1>
+<h1><%= t(:welcome_message) %></h1>
 
 <% if admin_signed_in? %>
-  <p><%= link_to 'Cadastrar Categoria de Jogo', new_category_path %></p>
-  <p><%= link_to 'Cadastrar Empresa Fabricante', new_company_path %></p>
+  <p><%= link_to t('register.category'), new_category_path %></p>
+  <p><%= link_to t('register.company'), new_company_path %></p>
 <% end %>
 
-<p><%= link_to 'Ver Categorias cadastradas', categories_path %></p>
+<p><%= link_to t('view.categories'), categories_path %></p>

@@ -1,0 +1,17 @@
+pt-BR:
+  welcome_message: 'Bem-vindo ao Multiplayer'
+  authenticated_as: 'Logado como'
+  authenticated_as_admin: 'Logado como Admin'
+  register:
+    category: 'Cadastrar Categoria de Jogo'
+    company: 'Cadastrar Empresa Fabricante'
+  edit:
+    category: 'Editar Categoria'
+  delete:
+    category: 'Deletar Categoria'
+  view:
+    categories: 'Ver Categorias cadastradas'
+  total:
+    categories: 'Total de Categorias'
+  submit: 'Enviar'
+  back: 'Voltar'
