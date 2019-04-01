@@ -3,12 +3,20 @@ require 'rails_helper'
 feature 'Admin register Game' do
   scenario 'successfully' do
     admin = create(:admin)
+    rpg = create(:category, name: 'RPG')
+    action = create(:category, name: 'Ação')
+    xbox = create(:platform, name: 'Xbox One')
+    playstation = create(:category, name: 'Playstation 4')
 
     login_as(admin, scope: :admin)
     visit root_path
     click_on 'Cadastrar Novo Jogo'
     fill_in 'Nome', with: 'Dark Souls'
     fill_in 'Ano de Lançamento', with: '2012'
+    check rpg.name
+    check action.name
+    check xbox.name
+    check playstation.name
     attach_file 'Foto', Rails.root.join('spec', 'support', 'sega.png')
     click_on 'Enviar'
 

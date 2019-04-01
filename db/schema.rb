@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_01_223042) do
+ActiveRecord::Schema.define(version: 2019_04_01_235318) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -51,10 +51,28 @@ ActiveRecord::Schema.define(version: 2019_04_01_223042) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "category_games", force: :cascade do |t|
+    t.integer "category_id"
+    t.integer "game_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_category_games_on_category_id"
+    t.index ["game_id"], name: "index_category_games_on_game_id"
+  end
+
   create_table "companies", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "game_platforms", force: :cascade do |t|
+    t.integer "game_id"
+    t.integer "plataform_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_game_platforms_on_game_id"
+    t.index ["plataform_id"], name: "index_game_platforms_on_plataform_id"
   end
 
   create_table "games", force: :cascade do |t|
