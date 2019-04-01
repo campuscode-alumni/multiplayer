@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :categories, only: %i[index show new create]
+  resources :platforms, only: %i[index show new create]
   resources :companies, only: [:new, :create]
 end

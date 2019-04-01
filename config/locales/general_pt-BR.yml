@@ -5,13 +5,18 @@ pt-BR:
   register:
     category: 'Cadastrar Categoria de Jogo'
     company: 'Cadastrar Empresa Fabricante'
+    platform: 'Cadastrar Console'
   edit:
     category: 'Editar Categoria'
+    platform: 'Editar Console'
   delete:
     category: 'Deletar Categoria'
+    platform: 'Deletar Console'
   view:
     categories: 'Ver Categorias cadastradas'
+    platforms: 'Ver Consoles Cadastrados'
   total:
     categories: 'Total de Categorias'
+    platforms: 'Total de Consoles'
   submit: 'Enviar'
   back: 'Voltar'

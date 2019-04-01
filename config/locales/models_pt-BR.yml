@@ -13,3 +13,5 @@ pt-BR:
       company:
         name: 'Nome'
         logo: 'Logo'
+      platform:
+        name: 'Nome'
