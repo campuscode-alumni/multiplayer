@@ -1,0 +1,15 @@
+<h2>Multiplayer - Categorias</h2>
+
+<div>
+  <% if @categories.any? %>
+    <ul>
+      <% @categories.each do |category| %>
+        <li><%= link_to category.name, category %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <p><%= "Total de Categorias: #{@categories.count}" %></p>
+</div>
+
+<%= link_to 'Voltar', root_path %>

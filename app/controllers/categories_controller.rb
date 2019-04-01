@@ -1,6 +1,14 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_admin!
 
+  def index
+    @categories = Category.all
+  end
+
+  def show
+    @category = Category.find(params[:id])
+  end
+
   def new
     @new_category = Category.new
   end
