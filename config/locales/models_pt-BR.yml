@@ -4,6 +4,7 @@ pt-BR:
       admin: 'Admin'
       category: 'Categoria'
       company: 'Empresa'
+      game: 'Jogo'
     attributes:
       admin:
         email: 'Email'
@@ -13,5 +14,9 @@ pt-BR:
       company:
         name: 'Nome'
         logo: 'Logo'
+      game:
+        name: 'Nome'
+        release_year: 'Ano de Lançamento'
+        photo: 'Foto'
       platform:
         name: 'Nome'

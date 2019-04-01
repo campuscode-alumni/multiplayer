@@ -5,6 +5,7 @@ pt-BR:
   register:
     category: 'Cadastrar Categoria de Jogo'
     company: 'Cadastrar Empresa Fabricante'
+    game: 'Cadastrar Novo Jogo'
     platform: 'Cadastrar Console'
   edit:
     category: 'Editar Categoria'

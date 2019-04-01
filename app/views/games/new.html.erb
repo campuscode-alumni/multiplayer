@@ -1,0 +1,10 @@
+<h2><%= t('register.game') %></h2>
+
+<%= simple_form_for @game do |f| %>
+  <%= f.input :name %>
+  <%= f.input :release_year %>
+  <%= f.input :photo, as: :file %>
+  <%= f.submit t(:submit) %>
+<% end %>
+
+<p><%= link_to t(:back), root_path %></p>
