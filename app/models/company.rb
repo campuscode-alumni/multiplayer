@@ -4,9 +4,9 @@ class Company < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validate :logo_validation
 
+  private
+
   def logo_validation
-    if !logo.attached?
-      errors[:logo] << 'Logo precisa ser enviado'
-    end
+    !logo.attached? && errors[:logo] << 'Logo precisa ser enviado'
   end
 end
