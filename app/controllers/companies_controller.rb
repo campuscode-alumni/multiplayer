@@ -5,9 +5,12 @@ class CompaniesController < ApplicationController
 
   def create
     @company = Company.new(company_params)
-    @company.save
-    flash[:notice] = "Empresa #{@company.name} cadastrada com sucesso!"
-    redirect_to root_path
+    if @company.save
+      flash[:notice] = "Empresa #{@company.name} cadastrada com sucesso!"
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   private
