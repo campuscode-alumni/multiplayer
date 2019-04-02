@@ -5,6 +5,22 @@ class PlatformsController < ApplicationController
     @platforms = Platform.all
   end
 
+  def new
+    @platform = Platform.new
+    @companies = Company.all
+  end
+
+  def create
+    @platform = Platform.new(params_platform)
+    if @platform.save
+      flash[:notice] = "Plataforma #{@platform.name} criada com sucesso!"
+      redirect_to @platform
+    else
+      @companies = Company.all
+      render :new
+    end
+  end
+
   def show
     @platform = Platform.find(params[:id])
   end
@@ -12,6 +28,6 @@ class PlatformsController < ApplicationController
   private
 
   def params_platform
-    params.require(:platform).permit(:name)
+    params.require(:platform).permit(:name, :logo, :companies_id)
   end
 end
