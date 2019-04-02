@@ -23,6 +23,19 @@
       <% end %>
     </nav>
 
+    <nav>
+      <% if user_signed_in? %>
+        <p>
+          <span>
+            <%= "#{t(:authenticated_as)}: #{current_user.email}" %>
+          </span>
+        </p>
+        <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to 'Entrar', new_user_session_path %>
+      <% end %>
+    </nav>
+
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 

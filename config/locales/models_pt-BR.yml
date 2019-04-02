@@ -6,6 +6,7 @@ pt-BR:
       company: 'Empresa'
       game: 'Jogo'
       platform: 'Plataforma'
+      user: 'Usuário'
     attributes:
       admin:
         email: 'Email'
@@ -22,3 +23,9 @@ pt-BR:
       platform:
         name: 'Nome'
         logo: 'Logo'
+      user:
+        name: 'Nome'
+        email: 'E-mail'
+        password: 'Senha'
+        password_confirmation: 'Confirmar senha'
+        remember_me: 'Ficar conectado'
