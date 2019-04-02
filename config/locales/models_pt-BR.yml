@@ -5,6 +5,7 @@ pt-BR:
       category: 'Categoria'
       company: 'Empresa'
       game: 'Jogo'
+      platform: 'Plataforma'
     attributes:
       admin:
         email: 'Email'
@@ -20,3 +21,4 @@ pt-BR:
         photo: 'Foto'
       platform:
         name: 'Nome'
+        logo: 'Logo'
