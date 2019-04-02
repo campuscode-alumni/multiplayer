@@ -28,6 +28,6 @@ class PlatformsController < ApplicationController
   private
 
   def params_platform
-    params.require(:platform).permit(:name, :logo, :companies_id)
+    params.require(:platform).permit(:name, :logo, :company_id)
   end
 end

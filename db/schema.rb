@@ -86,10 +86,8 @@ ActiveRecord::Schema.define(version: 2019_04_02_102019) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "categories_id"
-    t.integer "companies_id"
-    t.index ["categories_id"], name: "index_platforms_on_categories_id"
-    t.index ["companies_id"], name: "index_platforms_on_companies_id"
+    t.integer "company_id"
+    t.index ["company_id"], name: "index_platforms_on_company_id"
   end
 
   create_table "users", force: :cascade do |t|
