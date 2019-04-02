@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :game do
-    name { "MyString" }
-    release_year { 1 }
+    name { 'Game' }
+    release_year { 2019 }
   end
 end

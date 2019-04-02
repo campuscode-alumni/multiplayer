@@ -10,16 +10,22 @@ class GamesController < ApplicationController
   def create
     @game = Game.new(game_params)
     if @game.save
-      @game.category_games = category_games_params
-      @game.game_platforms = game_platforms_params
-      flash[:notice] = "Jogo #{@game.name} cadastrado com sucesso"
-      redirect_to new_game_path
+      successfull_save
     else
+      @categories = Category.all
+      @platforms = Platform.all
       render :new
     end
   end
 
   private
+
+  def successfull_save
+    @game.category_games = category_games_params
+    @game.game_platforms = game_platforms_params
+    flash[:notice] = "Jogo #{@game.name} cadastrado com sucesso"
+    redirect_to new_game_path
+  end
 
   def game_params
     params.require(:game).permit(:name, :release_year, :photo)
@@ -30,6 +36,6 @@ class GamesController < ApplicationController
   end
 
   def game_platforms_params
-    GamePlatform.where(id: params[:game][:game_platforms][:game_platforms_ids])    
+    GamePlatform.where(id: params[:game][:game_platforms][:game_platforms_ids])
   end
 end
