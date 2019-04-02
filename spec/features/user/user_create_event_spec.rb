@@ -21,7 +21,7 @@ feature 'User create Event' do
     click_on 'Criar Evento'
 
     expect(page).to have_content('Seu evento foi criado')
-    expect(page).to have_content('h2', 'Noite do Mario Kart na Paulista')
+    expect(page).to have_css('h2', text: 'Noite do Mario Kart na Paulista')
     expect(page).to have_content('Data: 25/04/2019')
     expect(page).to have_content('Local: Avenida Paulista, 1000')
     expect(page).to have_content('Total Participantes: 1')
