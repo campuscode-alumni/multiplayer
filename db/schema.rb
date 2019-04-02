@@ -86,8 +86,8 @@ ActiveRecord::Schema.define(version: 2019_04_02_072708) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "companies_id"
-    t.index ["companies_id"], name: "index_platforms_on_companies_id"
+    t.integer "company_id"
+    t.index ["company_id"], name: "index_platforms_on_company_id"
   end
 
 end

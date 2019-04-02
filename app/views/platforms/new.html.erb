@@ -1,8 +1,8 @@
 <h2><%= t('register.platform') %></h2>
 
 <%= simple_form_for @platform do |f| %>
-  <%= f.label :companies_id, 'Empresa' %>
-  <%= f.collection_select :companies_id, @companies, :id, :name %>
+  <%= f.label :company_id, 'Empresa' %>
+  <%= f.collection_select :company_id, @companies, :id, :name %>
   <%= f.input :name %>
   <%= f.input :logo, as: :file %>
   <%= f.submit t(:submit) %>
