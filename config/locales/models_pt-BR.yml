@@ -21,6 +21,9 @@ pt-BR:
         title: 'Título'
         description: 'Descrição'
         event_date: 'Data do Evento'
+        user_limit: 'Limite de Usuários'
+        event_type: 'Tipo do Evento'
+        event_location: 'Local'
       game:
         name: 'Nome'
         release_year: 'Ano de Lançamento'

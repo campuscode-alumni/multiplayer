@@ -18,7 +18,7 @@ feature 'User create Event' do
     select 'Abril', from: 'event_event_date_2i'
     select '2019', from: 'event_event_date_1i'
     fill_in 'Limite de Usuários', with: '8'
-    select 'Presencial', from: 'Tipo do Evento'
+    choose(:presential)
     fill_in 'Local', with: 'Avenida Paulista, 1000'
     click_on 'Criar Evento'
 

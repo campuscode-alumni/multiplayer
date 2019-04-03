@@ -25,5 +25,6 @@ pt-BR:
     new:
       event:
         game_platform_id: 'Selecione o Jogo'
+        submit: 'Criar Evento'
   submit: 'Enviar'
   back: 'Voltar'

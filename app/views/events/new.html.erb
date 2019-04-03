@@ -4,4 +4,8 @@
   <%= f.input :game_platform_id, collection: @game_platforms, label_method: :game_and_platform, value_method: :id, label: t('form.new.event.game_platform_id') %>
   <%= f.input :description, as: :text %>
   <%= f.input :event_date %>
+  <%= f.input :user_limit %>
+  <%= f.input :event_type, as: :radio_buttons, collection: Event.event_types %>
+  <%= f.input :event_location %>
+  <%= f.submit t('form.new.event.submit') %>
 <% end %>
