@@ -1,11 +1,12 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  belongs_to :city, optional: true
+  belongs_to :state, optional: true
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  belongs_to :city, optional: true
-  belongs_to :state, optional: true
+  has_one_attached :avatar
 
   validates :name, presence: true
+  validates :nickname, presence: true
 end

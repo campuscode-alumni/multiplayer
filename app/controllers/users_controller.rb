@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   def edit
     @user = current_user
     @states = State.all
-    @cities = @user.state.cities
+    @cities = City.all
   end
 
   def update
@@ -11,6 +11,8 @@ class UsersController < ApplicationController
       flash[:notice] = 'Perfil atualizado com sucesso!'
       redirect_to user_path(current_user)
     else
+      @states = State.all
+      @cities = City.all
       render :edit
     end
   end
@@ -22,6 +24,6 @@ class UsersController < ApplicationController
   private
 
   def params_user
-    params.require(:user).permit(:state_id, :city_id)
+    params.require(:user).permit(:name, :state_id, :city_id, :nickname, :avatar)
   end
 end

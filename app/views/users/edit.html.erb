@@ -15,13 +15,11 @@
       });
     };
   });
-
- 
-
-
 </script>
 
 <%= simple_form_for @user do |f| %>
+    <%= f.input :nickname %>
+    <%= f.input :avatar, as: :file %>
     <%= f.label :state_id, 'Estado' %>
     <%= f.collection_select :state_id, @states, :id, :name %>
     <%= f.label :city_id, 'Cidade' %>
