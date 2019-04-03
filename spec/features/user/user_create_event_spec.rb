@@ -4,9 +4,9 @@ feature 'User create Event' do
   scenario 'for a physical location' do
     user = create(:user)
     game = create(:game, name: 'Mario Kart 8')
-    create(:game_user, game: game, user: user)
     platform = create(:platform, name: 'Nintendo Switch')
     create(:game_platform, game: game, platform: platform)
+    create(:game_user, game: game, user: user)
 
     login_as(user, scope: :user)
     visit root_path
@@ -14,7 +14,9 @@ feature 'User create Event' do
     fill_in 'Título', with: 'Noite do Mario Kart na Paulista'
     select 'Mario Kart 8 - Nintendo Switch', from: 'Selecione o Jogo'
     fill_in 'Descrição', with: 'Noite com os amigos do curso para beber cerveja e jogar Mario Kart'
-    fill_in 'Data do Evento', with: '25/04/2019'
+    select '25', from: 'event_event_date_3i'
+    select 'Abril', from: 'event_event_date_2i'
+    select '2019', from: 'event_event_date_1i'
     fill_in 'Limite de Usuários', with: '8'
     select 'Presencial', from: 'Tipo do Evento'
     fill_in 'Local', with: 'Avenida Paulista, 1000'
