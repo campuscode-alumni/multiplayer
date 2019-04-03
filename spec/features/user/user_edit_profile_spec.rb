@@ -22,4 +22,21 @@ feature 'User edit Profile' do
     expect(page).to have_content('SP')
     expect(page).to have_content('São Paulo')
   end
+
+  scenario 'and selects state and city', js: true do
+    user = create(:user)
+    state = create(:state, name: 'SP')
+    create(:city, name: 'São Paulo', state: state)
+    
+    login_as(user, scope: :user)
+    visit root_path
+    click_on 'Editar Perfil'
+    select 'SP', from: 'Estado'
+    select 'São Paulo', from: 'Cidade'
+    click_on 'Atualizar'
+
+    expect(page).to have_content('SP')
+    expect(page).to have_content('São Paulo')
+    expect(page).to have_content('Perfil atualizado com sucesso!')
+  end
 end

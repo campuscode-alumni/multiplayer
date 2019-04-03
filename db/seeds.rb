@@ -8,3 +8,6 @@
 if (!Admin.where(email: 'admin@admin.com').first)
   Admin.create(email: 'admin@admin.com', password: '12345678')
 end
+
+state = FactoryBot.create(:state, name: 'SP')
+FactoryBot.create(:city, name: 'São Paulo', state: state)
