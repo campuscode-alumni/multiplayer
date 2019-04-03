@@ -5,7 +5,12 @@
   <%= f.input :description, as: :text %>
   <%= f.input :event_date %>
   <%= f.input :user_limit %>
-  <%= f.input :event_type, as: :radio_buttons, collection: Event.event_types %>
+
+  <% Event.event_types.each do |k, v| %>
+    <%= f.label :"event_type_#{k}" ,t("form.new.event.#{k}") %>
+    <%= f.radio_button(:event_type, k.to_s) %>
+  <% end %>
+
   <%= f.input :event_location %>
   <%= f.submit t('form.new.event.submit') %>
 <% end %>

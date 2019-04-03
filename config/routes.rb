@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   resources :companies, only: %i[new create]
   resources :games, only: %i[new create]
   resources :platforms, only: %i[index show new create]
-  resources :events, only: [:new, :create]
+  resources :events, only: [:new, :create, :show]
 end

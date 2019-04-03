@@ -7,6 +7,14 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.user = current_user
+    @event.save
+    EventParticipation.create(event: @event, user: current_user)
+    flash[:notice] = 'Seu evento foi criado'
+    redirect_to @event
+  end
+
+  def show
+    @event = Event.find(params[:id])
   end
 
   private

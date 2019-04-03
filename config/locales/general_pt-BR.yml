@@ -26,5 +26,7 @@ pt-BR:
       event:
         game_platform_id: 'Selecione o Jogo'
         submit: 'Criar Evento'
+        presential: 'Presencial'
+        online: 'Online'
   submit: 'Enviar'
   back: 'Voltar'
