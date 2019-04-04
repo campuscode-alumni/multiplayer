@@ -1,0 +1,30 @@
+require 'rails_helper'
+
+RSpec.describe 'Games API' do
+  describe 'list games' do
+    it 'should list all games' do
+      game1 = create(:game, name: 'God of War', release_year: 2018)
+      game2 = create(:game, name: 'Life is Strange', release_year: 2018)
+
+      # chamada para API
+      get '/api/v1/games'
+      
+      result = JSON.parse(response.body)
+      # expectativas
+      expect(result.count).to eq 2
+
+      #expect(result.first['title']).to eq 'Feijoada'
+      expect(response.status).to eq 200
+      expect(response.body).to include 'God of War'
+      expect(response.body).to include 'Life is Strange'
+    end
+
+    it 'delete a game that does not exist' do 
+    
+      delete '/api/v1/games/999'
+  
+      expect(response.status).to eq 404
+      expect(response.body).to include 'Game não existe'
+    end
+  end
+end

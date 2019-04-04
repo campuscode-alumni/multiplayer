@@ -8,4 +8,10 @@ Rails.application.routes.draw do
   resources :companies, only: %i[new create]
   resources :games, only: %i[new create]
   resources :platforms, only: %i[index show new create]
+
+  namespace :api, defaults: { format: 'json' } do
+    namespace :v1 do
+      resources :games, only: %i[index destroy]
+    end
+  end
 end
