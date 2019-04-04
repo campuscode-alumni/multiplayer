@@ -13,14 +13,13 @@ RSpec.describe 'Games API' do
       # expectativas
       expect(result.count).to eq 2
 
-      #expect(result.first['title']).to eq 'Feijoada'
+      # expect(result.first['title']).to eq 'Feijoada'
       expect(response.status).to eq 200
       expect(response.body).to include 'God of War'
       expect(response.body).to include 'Life is Strange'
     end
 
-    it 'delete a game that does not exist' do 
-    
+    it 'delete a game that does not exist' do
       delete '/api/v1/games/999'
   
       expect(response.status).to eq 404

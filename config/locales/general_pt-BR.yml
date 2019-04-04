@@ -2,6 +2,8 @@ pt-BR:
   welcome_message: 'Bem-vindo ao Multiplayer'
   authenticated_as: 'Logado como'
   authenticated_as_admin: 'Logado como Admin'
+  create:
+    event: 'Quero criar um novo Evento'
   register:
     category: 'Cadastrar Categoria de Jogo'
     company: 'Cadastrar Empresa Fabricante'
@@ -19,5 +21,12 @@ pt-BR:
   total:
     categories: 'Total de Categorias'
     platforms: 'Total de Consoles'
+  form:
+    new:
+      event:
+        game_platform_id: 'Selecione o Jogo'
+        submit: 'Criar Evento'
+        presential: 'Presencial'
+        online: 'Online'
   submit: 'Enviar'
   back: 'Voltar'
