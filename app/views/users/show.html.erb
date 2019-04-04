@@ -1,0 +1,8 @@
+<h2>Perfil</h2>
+
+<% if @user.avatar.attached? %>
+  <%= image_tag @user.avatar %>
+<% end %>
+<h2><%= @user.nickname %></h2>
+<%= @user.state.name %>
+<%= @user.city.name %>

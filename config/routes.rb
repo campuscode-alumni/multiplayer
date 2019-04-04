@@ -1,14 +1,18 @@
 Rails.application.routes.draw do
-  devise_for :users
   devise_for :admins
+  devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'home#index'
 
   resources :categories, only: %i[index show new create]
   resources :companies, only: %i[new create]
+  resources :events, only: %i[index show new create]
   resources :games, only: %i[new create]
   resources :platforms, only: %i[index show new create]
-  resources :events, only: %i[index show new create]
+  resources :states, only: [:show] do
+    resources :cities, only: [:index]
+  end
+  resources :users, only: %i[edit update show]
 
   namespace :api, defaults: { format: 'json' } do
     namespace :v1 do

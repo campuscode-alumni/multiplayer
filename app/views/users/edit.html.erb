@@ -1,0 +1,30 @@
+<h2>Editar Perfil</h2>
+
+
+<script>
+  $.when($.ready).then(function() {
+    updateCities();
+
+    $( "#user_state_id" ).change(function() {
+      updateCities();      
+    });
+
+      function updateCities(){
+      $.get( "/states/" + $( "#user_state_id").val() + "/cities", function( data ) {
+        $('#cities_collection').html(data);
+      });
+    };
+  });
+</script>
+
+<%= simple_form_for @user do |f| %>
+    <%= f.input :nickname %>
+    <%= f.input :avatar, as: :file %>
+    <%= f.label :state_id, 'Estado' %>
+    <%= f.collection_select :state_id, @states, :id, :name %>
+    <%= f.label :city_id, 'Cidade' %>
+    <div id="cities_collection">
+      <%= f.collection_select :city_id, @cities, :id, :name %>
+    </div>
+    <%= f.submit 'Atualizar' %>
+<% end %>

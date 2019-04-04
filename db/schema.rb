@@ -60,6 +60,14 @@ ActiveRecord::Schema.define(version: 2019_04_03_225259) do
     t.index ["game_id"], name: "index_category_games_on_game_id"
   end
 
+  create_table "cities", force: :cascade do |t|
+    t.string "name"
+    t.integer "state_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["state_id"], name: "index_cities_on_state_id"
+  end
+
   create_table "companies", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -123,6 +131,12 @@ ActiveRecord::Schema.define(version: 2019_04_03_225259) do
     t.index ["company_id"], name: "index_platforms_on_company_id"
   end
 
+  create_table "states", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -132,8 +146,13 @@ ActiveRecord::Schema.define(version: 2019_04_03_225259) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "city_id"
+    t.integer "state_id"
+    t.string "nickname"
+    t.index ["city_id"], name: "index_users_on_city_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["state_id"], name: "index_users_on_state_id"
   end
 
 end
