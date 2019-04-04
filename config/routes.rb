@@ -9,4 +9,10 @@ Rails.application.routes.draw do
   resources :games, only: %i[new create]
   resources :platforms, only: %i[index show new create]
   resources :events, only: [:new, :create, :show]
+
+  namespace 'api', defaults: { format: 'json'} do
+    namespace 'v1' do
+      resources :events, only: [:index, :show]
+    end
+  end
 end

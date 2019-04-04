@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :game_platform do
-    game { nil }
-    platform { nil }
+    game
+    platform
   end
 end
