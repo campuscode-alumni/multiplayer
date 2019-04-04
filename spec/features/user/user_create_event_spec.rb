@@ -28,6 +28,5 @@ feature 'User create Event' do
     expect(page).to have_content('Local: Avenida Paulista, 1000')
     expect(page).to have_content('Total Participantes: 1')
     expect(page).to have_content('Máximo Participantes: 8')
-    expect(page).to have_link('Convidar Jogadores para este Evento')
   end
 end
