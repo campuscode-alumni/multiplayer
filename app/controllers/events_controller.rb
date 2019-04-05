@@ -17,6 +17,14 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
+  def invite
+    @event = Event.find(params[:id])
+    @invited_user = User.find_by(email: params[:q]) || User.find_by(nickname: params[:q])
+    EventInvite.create(event: @event, user: current_user, invitee: @invited_user)
+    flash[:notice] = "Convite enviado para o usuário #{@invited_user.nickname}"
+    redirect_to @event
+  end
+
   private
 
   def event_params
