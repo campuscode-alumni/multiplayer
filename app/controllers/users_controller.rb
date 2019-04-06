@@ -21,6 +21,14 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+  def invite
+    @user = User.find(params[:id])
+    @event = Event.find(params[:event_id])
+    EventInvite.create(event: @event, user: current_user, invitee: @user)
+    flash[:notice] = "Convite enviado para o usuário #{@user.nickname}"
+    redirect_to @user
+  end
+
   private
 
   def params_user

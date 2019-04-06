@@ -30,6 +30,7 @@ pt-BR:
         online: 'Online'
       invite:
         q: 'Informe o Email ou Nickname do usuário'
+        event: 'Convidar para Evento'
         submit: 'Convidar'
   submit: 'Enviar'
   back: 'Voltar'

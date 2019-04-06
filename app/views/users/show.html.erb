@@ -4,5 +4,14 @@
   <%= image_tag @user.avatar %>
 <% end %>
 <h2><%= @user.nickname %></h2>
+
 <%= @user.state.name %>
 <%= @user.city.name %>
+
+<div>
+  <%= simple_form_for @user, url: invite_user_path, method: :post do |f| %>
+    <%= label_tag :event_id, t('form.new.invite.event') %>
+    <%= select_tag :event_id, options_for_select(current_user.event_options) %>
+    <%= f.submit t('form.new.invite.submit') %>
+  <% end %>
+</div>

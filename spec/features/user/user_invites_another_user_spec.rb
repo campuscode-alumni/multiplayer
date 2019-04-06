@@ -44,6 +44,20 @@ feature 'User invites another user' do
     expect(EventInvite.count).to eq(0)
   end
 
+  scenario 'through another user page' do
+    user = create(:user)
+    another_user = create(:user)
+    event = create(:event, user: user)
+
+    login_as(user, scope: :user)
+    visit user_path(another_user)
+    select event.title, from: 'Convidar para Evento'
+    click_on 'Convidar'
+
+    expect(page).to have_content(convite_enviado(another_user))
+    expect(EventInvite.count).to eq(1)
+  end
+
   def convite_enviado(user)
     "Convite enviado para o usuário #{user.nickname}"
   end
