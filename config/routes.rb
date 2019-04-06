@@ -6,13 +6,17 @@ Rails.application.routes.draw do
 
   resources :categories, only: %i[index show new create]
   resources :companies, only: %i[new create]
-  resources :events, only: %i[index show new create]
+  resources :events, only: %i[index show new create] do
+    member {post :invite}
+  end
   resources :games, only: %i[new create]
   resources :platforms, only: %i[index show new create]
   resources :states, only: [:show] do
     resources :cities, only: [:index]
   end
-  resources :users, only: %i[edit update show]
+  resources :users, only: %i[edit update show] do
+    member {post :invite}
+  end
 
   namespace :api, defaults: { format: 'json' } do
     namespace :v1 do

@@ -1,7 +1,7 @@
 class Api::V1::GamesController < Api::V1::ApplicationController
   def index
     @games = Game.all
-    render status: 200, json: @games
+    render status: :ok, json: @games
   end
 
   def destroy
@@ -9,7 +9,7 @@ class Api::V1::GamesController < Api::V1::ApplicationController
     if @game
       @game.destroy
     else
-      render status: 404, json: 'Game não existe'
+      render status: :not_found, json: 'Game não existe'
     end
   end
 end

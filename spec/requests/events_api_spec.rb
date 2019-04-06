@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe "Events API" do
-  describe "list events" do
+RSpec.describe 'Events API' do
+  describe 'list events' do
     it 'should list all events' do
       create(:event, title: 'Jogatina')
       create(:event, title: 'Jogo dos Top')

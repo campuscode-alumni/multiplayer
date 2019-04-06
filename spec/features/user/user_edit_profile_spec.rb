@@ -5,7 +5,7 @@ feature 'User edit Profile' do
     user = create(:user)
     state = create(:state, name: 'SP')
     create(:city, name: 'São Paulo', state: state)
-    
+
     login_as(user, scope: :user)
     visit root_path
     click_on 'Editar Perfil'
@@ -27,7 +27,7 @@ feature 'User edit Profile' do
     user = create(:user)
     state = create(:state, name: 'SP')
     create(:city, name: 'São Paulo', state: state)
-    
+
     login_as(user, scope: :user)
     visit root_path
     click_on 'Editar Perfil'
@@ -46,7 +46,7 @@ feature 'User edit Profile' do
     user = create(:user)
     state = create(:state, name: 'SP')
     create(:city, name: 'São Paulo', state: state)
-    
+
     login_as(user, scope: :user)
     visit root_path
     click_on 'Editar Perfil'
@@ -61,7 +61,7 @@ feature 'User edit Profile' do
     another_user = create(:user, nickname: 'knight-of-the-dead')
     state = create(:state, name: 'SP')
     create(:city, name: 'São Paulo', state: state)
-    
+
     login_as(user, scope: :user)
     visit root_path
     click_on 'Editar Perfil'

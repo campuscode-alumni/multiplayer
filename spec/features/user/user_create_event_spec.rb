@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 feature 'User create Event' do
+  desc = 'Noite com os amigos do curso para beber cerveja e jogar Mario Kart'
+
   scenario 'for a physical location' do
     user = create(:user)
     game = create(:game, name: 'Mario Kart 8')
@@ -13,7 +15,7 @@ feature 'User create Event' do
     click_on 'Quero criar um novo Evento'
     fill_in 'Título', with: 'Noite do Mario Kart na Paulista'
     select 'Mario Kart 8 - Nintendo Switch', from: 'Selecione o Jogo'
-    fill_in 'Descrição', with: 'Noite com os amigos do curso para beber cerveja e jogar Mario Kart'
+    fill_in 'Descrição', with: desc
     select '25', from: 'event_event_date_3i'
     select 'Abril', from: 'event_event_date_2i'
     select '2019', from: 'event_event_date_1i'
@@ -28,6 +30,5 @@ feature 'User create Event' do
     expect(page).to have_content('Local: Avenida Paulista, 1000')
     expect(page).to have_content('Total Participantes: 1')
     expect(page).to have_content('Máximo Participantes: 8')
-    expect(page).to have_link('Convidar Jogadores para este Evento')
   end
 end

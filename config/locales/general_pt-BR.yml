@@ -9,6 +9,9 @@ pt-BR:
     company: 'Cadastrar Empresa Fabricante'
     game: 'Cadastrar Novo Jogo'
     platform: 'Cadastrar Plataforma'
+  show:
+    event:
+      invite_users: 'Convidar Usuários para Evento'
   edit:
     category: 'Editar Categoria'
     platform: 'Editar Console'
@@ -28,5 +31,9 @@ pt-BR:
         submit: 'Criar Evento'
         presential: 'Presencial'
         online: 'Online'
+      invite:
+        q: 'Informe o Email ou Nickname do usuário'
+        event: 'Convidar para Evento'
+        submit: 'Convidar'
   submit: 'Enviar'
   back: 'Voltar'
