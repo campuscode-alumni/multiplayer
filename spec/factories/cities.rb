@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :city do
-    name { "MyString" }
+    name { 'Tangamandapio' }
     state { nil }
   end
 end

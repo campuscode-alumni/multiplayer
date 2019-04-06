@@ -7,9 +7,7 @@ Rails.application.routes.draw do
   resources :categories, only: %i[index show new create]
   resources :companies, only: %i[new create]
   resources :events, only: %i[index show new create] do
-    member do
-      post :invite
-    end
+    member {post :invite}
   end
   resources :games, only: %i[new create]
   resources :platforms, only: %i[index show new create]
