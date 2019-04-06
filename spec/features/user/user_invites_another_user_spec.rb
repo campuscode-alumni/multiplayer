@@ -6,7 +6,7 @@ feature 'User invites another user' do
   scenario 'to an event using email' do
     user = create(:user)
     another_user = create(:user)
-    event = create(:event)
+    event = create(:event, user: user)
 
     login_as(user, scope: :user)
     visit event_path(event)
@@ -14,13 +14,14 @@ feature 'User invites another user' do
     click_on 'Convidar'
 
     expect(page).to have_content(convite_enviado(another_user))
+    expect(page).to have_content('Convidar Usuários para Evento')
     expect(EventInvite.count).to eq(1)
   end
 
   scenario 'to an event using email' do
     user = create(:user)
     another_user = create(:user)
-    event = create(:event)
+    event = create(:event, user: user)
 
     login_as(user, scope: :user)
     visit event_path(event)
@@ -28,12 +29,13 @@ feature 'User invites another user' do
     click_on 'Convidar'
 
     expect(page).to have_content(convite_enviado(another_user))
+    expect(page).to have_content('Convidar Usuários para Evento')
     expect(EventInvite.count).to eq(1)
   end
 
   scenario 'but informs an email that does not exist' do
     user = create(:user)
-    event = create(:event)
+    event = create(:event, user: user)
 
     login_as(user, scope: :user)
     visit event_path(event)
@@ -41,6 +43,7 @@ feature 'User invites another user' do
     click_on 'Convidar'
 
     expect(page).to have_content('Não foi encontrado um usuário com este email')
+    expect(page).to have_content('Convidar Usuários para Evento')
     expect(EventInvite.count).to eq(0)
   end
 
@@ -55,7 +58,19 @@ feature 'User invites another user' do
     click_on 'Convidar'
 
     expect(page).to have_content(convite_enviado(another_user))
+    expect(page).not_to have_content('Convidar Usuários para Evento')
     expect(EventInvite.count).to eq(1)
+  end
+
+  scenario 'only if user is creator of event' do
+    user = create(:user)
+    event = create(:event)
+
+    login_as(user, scope: :user)
+    visit event_path(event)
+
+    expect(page).not_to have_content(q)
+    expect(page).not_to have_content('Convidar Usuários para Evento')
   end
 
   def convite_enviado(user)

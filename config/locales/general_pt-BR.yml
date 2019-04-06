@@ -9,6 +9,9 @@ pt-BR:
     company: 'Cadastrar Empresa Fabricante'
     game: 'Cadastrar Novo Jogo'
     platform: 'Cadastrar Plataforma'
+  show:
+    event:
+      invite_users: 'Convidar Usuários para Evento'
   edit:
     category: 'Editar Categoria'
     platform: 'Editar Console'
