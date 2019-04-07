@@ -74,4 +74,35 @@ feature 'User views timeline' do
     expect(page).to have_link(bf_play.title)
     expect(page).not_to have_link(sprun_night.title)
   end
+
+  scenario 'and see latest events with creators names' do
+    user = create(:user)
+    nint_event = create(:event)
+    sony_event = create(:event)
+    micro_event = create(:event)
+
+    login_as(user, scope: :user)
+    visit root_path
+    
+    expect(page).to have_css('h3', text: 'Próximos Eventos')
+    expect(page).to have_content("Criado por: #{nint_event.user.nickname}")
+    expect(page).to have_content("Criado por: #{sony_event.user.nickname}")
+    expect(page).to have_content("Criado por: #{micro_event.user.nickname}")
+  end
+
+  scenario 'and see latest with info about attendance' do
+    user = create(:user)
+    event = create(:event, user_limit: 4)
+    create(:event_participation, event: event)
+    create(:event_participation, event: event)
+    create(:event_participation, event: event)
+    create(:event_participation, event: event)
+
+    login_as(user, scope: :user)
+    visit root_path
+    save_page
+    expect(page).to have_link(event.title)
+    expect(page).to have_css('img[src*="full_attendance.png"]')
+    expect(page).to have_css('img[title*="Todas as vagas estão preenchidas"]')
+  end
 end

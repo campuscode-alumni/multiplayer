@@ -2,6 +2,7 @@ pt-BR:
   welcome_message: 'Bem-vindo ao Multiplayer'
   authenticated_as: 'Logado como'
   authenticated_as_admin: 'Logado como Admin'
+  full_attendance: Todas as vagas estão preenchidas
   create:
     event: 'Quero criar um novo Evento'
   register:
