@@ -18,9 +18,15 @@ pt-BR:
   delete:
     category: 'Deletar Categoria'
     platform: 'Deletar Console'
+  find:
+    events: 'Encontrar Eventos'
+    games: 'Encontrar Jogos'
+    users: 'Encontrar Usuários'
   view:
     categories: 'Ver Categorias cadastradas'
     platforms: 'Ver Consoles Cadastrados'
+  last:
+    games: 'Últimos Jogos adicionados'
   total:
     categories: 'Total de Categorias'
     platforms: 'Total de Consoles'

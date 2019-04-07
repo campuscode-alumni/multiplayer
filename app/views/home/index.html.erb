@@ -11,5 +11,25 @@
 <p><%= link_to t('view.platforms'), platforms_path %></p>
 
 <div>
-  <p><%= link_to t('create.event'), new_event_path %></p>
+  <div>
+    <p><%= link_to t('create.event'), new_event_path %></p>
+  </div>
+
+  <div>
+    <p><%= link_to t('find.events') %></p>
+    <p><%= link_to t('find.games') %></p>
+    <p><%= link_to t('find.users') %></p>
+  </div>
+
+  <div>
+    <h3><%= t('last.games') %></h3>
+
+    <% if @games.any? %>
+      <ul>
+        <% @games.each do |game| %>
+          <li><%= link_to game.name %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
 </div>
