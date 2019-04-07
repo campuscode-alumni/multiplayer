@@ -27,6 +27,8 @@ pt-BR:
     platforms: 'Ver Consoles Cadastrados'
   last:
     games: 'Últimos Jogos adicionados'
+  upcoming:
+    events: 'Próximos Eventos'
   total:
     categories: 'Total de Categorias'
     platforms: 'Total de Consoles'

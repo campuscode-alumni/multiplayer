@@ -32,4 +32,16 @@
       </ul>
     <% end %>
   </div>
+
+  <div>
+    <h3><%= t('upcoming.events') %></h3>
+
+    <% if @events.any? %>
+      <ul>
+        <% @events.each do |event| %>
+          <li><%= link_to event.title %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
 </div>
