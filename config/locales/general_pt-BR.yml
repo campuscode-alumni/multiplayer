@@ -29,6 +29,12 @@ pt-BR:
     submit: 'Pesquisar'
   found:
     games: "Foram encontrados %{total} Jogos"
+  not:
+    found:
+      games: 'Nenhum jogo encontrado'
+  add:
+    games:
+      to_profile: 'Adicionar Jogos ao Meu Perfil'
   view:
     categories: 'Ver Categorias cadastradas'
     platforms: 'Ver Consoles Cadastrados'

@@ -83,7 +83,7 @@ feature 'User views timeline' do
 
     login_as(user, scope: :user)
     visit root_path
-    
+
     expect(page).to have_css('h3', text: 'Próximos Eventos')
     expect(page).to have_content("Criado por: #{nint_event.user.nickname}")
     expect(page).to have_content("Criado por: #{sony_event.user.nickname}")

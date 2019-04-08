@@ -19,7 +19,7 @@ class GamesController < ApplicationController
   end
 
   def search
-    @games = Game.where('name like ?', "%#{params[:q]}%")
+    @games = Game.where('name like ?', "%#{params[:q]}%") if params[:q].present?
   end
 
   private

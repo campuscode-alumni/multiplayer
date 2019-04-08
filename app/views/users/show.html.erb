@@ -1,12 +1,18 @@
 <h2>Perfil</h2>
 
-<% if @user.avatar.attached? %>
-  <%= image_tag @user.avatar %>
-<% end %>
-<h2><%= @user.nickname %></h2>
+<div>
+  <% if @user.avatar.attached? %>
+    <%= image_tag @user.avatar %>
+  <% end %>
+  <h2><%= @user.nickname %></h2>
 
-<%= @user.state.name %>
-<%= @user.city.name %>
+  <%= @user.state.name %>
+  <%= @user.city.name %>
+</div>
+
+<div>
+  <p><%= link_to t('add.games.to_profile'), search_games_path %></p>
+</div>
 
 <div>
   <%= simple_form_for @user, url: invite_user_path, method: :post do |f| %>

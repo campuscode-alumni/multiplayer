@@ -8,16 +8,22 @@
 
 <div>
   
-  <ul>
-    <% @games.each do |game| %>
-      <li>
-        <%= link_to game.name %>
-      </li>
-    <% end %>
-  </ul>
+  <% if !@games.nil? %>
+    <ul>
+      <% @games.each do |game| %>
+        <li>
+          <%= link_to game.name %>
+        </li>
+      <% end %>
+    </ul>
 
-  <h3>
-    <%= t('found.games', total: @games.count) %>
-  </h3>
+    <h3>
+      <% if @games.count > 0 %>
+        <%= t('found.games', total: @games.count) %>
+      <% else %>
+        <%= t('not.found.games') %>
+      <% end %>
+    </h3>
+  <% end %>
 
 </div>
