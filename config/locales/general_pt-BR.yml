@@ -3,6 +3,9 @@ pt-BR:
   authenticated_as: 'Logado como'
   authenticated_as_admin: 'Logado como Admin'
   full_attendance: Todas as vagas estão preenchidas
+  game:
+    added: 'Este jogo foi vinculado ao seu perfil'
+    my: 'Meus Jogos'
   create:
     event: 'Quero criar um novo Evento'
   register:
@@ -33,6 +36,7 @@ pt-BR:
     found:
       games: 'Nenhum jogo encontrado'
   add:
+    to_my_profile: 'Adicionar ao meu Perfil'
     games:
       to_profile: 'Adicionar Jogos ao Meu Perfil'
   view:

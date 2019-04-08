@@ -11,7 +11,19 @@
 </div>
 
 <div>
-  <p><%= link_to t('add.games.to_profile'), search_games_path %></p>
+  <h3><%= t('game.my') %></h3>
+  
+  <% if @user.games.count > 0 %>
+    <ul>
+      <% @user.games.each do |game| %>
+        <%= link_to game.name, game_path(game) %>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <p>
+    <%= link_to t('add.games.to_profile'), search_games_path %>
+  </p>
 </div>
 
 <div>

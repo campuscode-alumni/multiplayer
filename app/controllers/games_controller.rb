@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :authenticate_admin!, except: [:search]
+  before_action :authenticate_admin!, except: %i[show search add]
 
   def new
     @game = Game.new
@@ -18,8 +18,19 @@ class GamesController < ApplicationController
     end
   end
 
+  def show
+    @game = Game.find(params[:id])
+  end
+
   def search
     @games = Game.where('name like ?', "%#{params[:q]}%") if params[:q].present?
+  end
+
+  def add
+    @game = Game.find(params[:id])
+    GameUser.create(game: @game, user: current_user)
+    flash[:notice] = t('game.added')
+    redirect_to @game
   end
 
   private

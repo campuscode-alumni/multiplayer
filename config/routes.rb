@@ -9,8 +9,9 @@ Rails.application.routes.draw do
   resources :events, only: %i[index show new create] do
     member {post :invite}
   end
-  resources :games, only: %i[new create] do
+  resources :games, only: %i[new create show] do
     collection {get :search}
+    member {patch :add}
   end
   resources :platforms, only: %i[index show new create]
   resources :states, only: [:show] do
