@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :game do
-    name { 'Game' }
+    sequence(:name) { |i| "Game #{i}" }
     release_year { 2019 }
   end
 end

@@ -26,4 +26,35 @@ feature 'User adds games to profile' do
     expect(page).to have_css('h3', text: 'Meus Jogos')
     expect(page).to have_link(game.name)
   end
+
+  scenario 'from home page timeline' do
+    user = create(:user)
+    game = create(:game)
+    another_game = create(:game)
+
+    login_as(user, scope: :user)
+    visit root_path
+    click_on 'Adicionar ao meu Perfil', match: :first
+    visit user_path(user)
+
+    expect(page).to have_link(game.name)
+    expect(page).not_to have_link(another_game.name)
+  end
+
+  scenario 'from game search' do
+    user = create(:user)
+    game = create(:game)
+    another_game = create(:game)
+
+    login_as(user, scope: :user)
+    visit root_path
+    click_on 'Encontrar Jogos'
+    fill_in 'Procurar por:', with: another_game.name
+    click_on 'Pesquisar'
+    click_on 'Adicionar ao meu Perfil', match: :first
+    visit user_path(user)
+
+    expect(page).not_to have_link(game.name)
+    expect(page).to have_link(another_game.name)
+  end
 end

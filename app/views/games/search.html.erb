@@ -12,7 +12,12 @@
     <ul>
       <% @games.each do |game| %>
         <li>
-          <%= link_to game.name %>
+          <p>
+            <%= link_to game.name %>
+          </p>
+          <p>
+            <%= link_to t('add.to_my_profile'), add_game_path(game), method: :patch %>
+          </p>
         </li>
       <% end %>
     </ul>
