@@ -23,6 +23,12 @@ pt-BR:
     events: 'Encontrar Eventos'
     games: 'Encontrar Jogos'
     users: 'Encontrar Usuários'
+  search: 
+    games: 'Pesquisar Jogos'
+    for: 'Procurar por:'
+    submit: 'Pesquisar'
+  found:
+    games: "Foram encontrados %{total} Jogos"
   view:
     categories: 'Ver Categorias cadastradas'
     platforms: 'Ver Consoles Cadastrados'

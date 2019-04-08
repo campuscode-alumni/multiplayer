@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :authenticate_admin!
+  before_action :authenticate_admin!, except: [:search]
 
   def new
     @game = Game.new
@@ -16,6 +16,10 @@ class GamesController < ApplicationController
       @platforms = Platform.all
       render :new
     end
+  end
+
+  def search
+    @games = Game.where('name like ?', "%#{params[:q]}%")
   end
 
   private
