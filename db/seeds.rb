@@ -9,6 +9,10 @@ if (!Admin.where(email: 'admin@admin.com').first)
   Admin.create(email: 'admin@admin.com', password: '12345678')
 end
 
+if (!User.find_by(email: 'user@user.com'))
+  FactoryBot.create(:user, name: 'user', email: 'user@user.com', password: '123456')
+end
+
 if (!City.find_by(name: 'São Paulo'))
   state = State.find_by(name: 'SP')
   if state.nil?
