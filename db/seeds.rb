@@ -1,11 +1,4 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-if (!Admin.where(email: 'admin@admin.com').first)
+if (!Admin.find_by(email: 'admin@admin.com'))
   Admin.create(email: 'admin@admin.com', password: '12345678')
 end
 
@@ -20,3 +13,32 @@ if (!City.find_by(name: 'São Paulo'))
   end
   FactoryBot.create(:city, name: 'São Paulo', state: state)
 end
+
+# empresas
+if (!Company.find_by(name: 'Nintendo'))
+  c = Company.new(name: 'Nintendo')
+  c.logo.attach(io: File.open(Rails.root.join('spec', 'support', 'nintendo.png')), filename: 'nintendo.png')
+  c.save  
+end
+
+if (!Company.find_by(name: 'Sega'))
+  c = Company.new(name: 'Sega')
+  c.logo.attach(io: File.open(Rails.root.join('spec', 'support', 'sega.png')), filename: 'sega.png')
+  c.save  
+end
+
+if (!Company.find_by(name: 'Sony'))
+  c = Company.new(name: 'Sony')
+  c.logo.attach(io: File.open(Rails.root.join('spec', 'support', 'sony.png')), filename: 'sony.png')
+  c.save  
+end
+
+if (!Company.find_by(name: 'Microsoft'))
+  c = Company.new(name: 'Microsoft')
+  c.logo.attach(io: File.open(Rails.root.join('spec', 'support', 'microsoft.png')), filename: 'microsoft.png')
+  c.save  
+end
+
+# todo plataformas
+
+# todo ganes
