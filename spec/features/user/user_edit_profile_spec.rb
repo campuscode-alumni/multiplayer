@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'User edit Profile' do
   scenario 'successfully' do
-    user = create(:user)
+    user = create(:user, state: nil, city: nil)
     state = create(:state, name: 'SP')
     create(:city, name: 'São Paulo', state: state)
 
@@ -24,7 +24,7 @@ feature 'User edit Profile' do
   end
 
   scenario 'and selects state and city' do
-    user = create(:user)
+    user = create(:user, state: nil, city: nil)
     state = create(:state, name: 'SP')
     create(:city, name: 'São Paulo', state: state)
 
