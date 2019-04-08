@@ -31,9 +31,11 @@
             <p>
               <%= link_to game.name %>
             </p>
-            <p>
-              <%= link_to t('add.to_my_profile'), add_game_path(game), method: :patch %>
-            </p>
+            <% if !current_user.games.exists?(game.id) %>
+              <p>
+                <%= link_to t('add.to_my_profile'), add_game_path(game), method: :patch %>
+              </p>
+            <% end %>
           </li>
         <% end %>
       </ul>
