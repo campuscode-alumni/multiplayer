@@ -9,16 +9,22 @@ Rails.application.routes.draw do
   resources :events, only: %i[index show new create] do
     member {post :invite}
   end
+
   resources :games, only: %i[new create show] do
     collection {get :search}
     member {patch :add}
   end
+
   resources :platforms, only: %i[index show new create]
   resources :states, only: [:show] do
     resources :cities, only: [:index]
   end
+
   resources :users, only: %i[edit update show] do
-    member {post :invite}
+    member do
+      post :invite
+      get :received_invites
+    end
   end
 
   namespace :api, defaults: { format: 'json' } do

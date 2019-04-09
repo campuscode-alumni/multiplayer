@@ -29,6 +29,9 @@ class UsersController < ApplicationController
     redirect_to @user
   end
 
+  def received_invites
+  end
+
   private
 
   def params_user

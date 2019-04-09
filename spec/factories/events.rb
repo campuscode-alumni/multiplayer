@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :event do
-    title { 'MyString' }
+    sequence(:title) { |i| "Evento #{i}" }
     user
     game_platform
     description { 'MyText' }
