@@ -45,6 +45,7 @@ pt-BR:
     received_invites: 'Ver convites recebidos'
   my:
     invites_count: "Você tem %{total} convites de eventos"
+    invites_none: 'Você não tem nenhum novo convite'
     invites: 'Meus Convites'
   last:
     games: 'Últimos Jogos adicionados'
