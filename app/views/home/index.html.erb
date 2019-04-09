@@ -20,6 +20,15 @@
             <p><%= "Criado por: #{event.user.nickname}" %></p>
           </div>
         <% end %>
+      <% else %>
+        <br>
+          <p>
+            <%= t('no_upcoming_events') %>
+          </p>
+          <p>
+            <%= link_to t('create.amused_event'), new_event_path %>
+          </p>
+        <br>
       <% end %>
     </div>
 
@@ -47,6 +56,6 @@
         </div>
       <% end %>
     </div>
-    
+
   </div>
 <% end %>

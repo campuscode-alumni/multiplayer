@@ -8,6 +8,7 @@ pt-BR:
     my: 'Meus Jogos'
   create:
     event: 'Quero criar um novo Evento'
+    amused_event: 'Movimente sua comunidade! Crie um Evento!'
   register:
     category: 'Cadastrar Categoria de Jogo'
     company: 'Cadastrar Empresa Fabricante'
@@ -51,6 +52,7 @@ pt-BR:
     games: 'Últimos Jogos adicionados'
   upcoming:
     events: 'Próximos Eventos'
+  no_upcoming_events: 'Não há nenhum evento nas proximidades acontecendo no próximo dia'
   total:
     categories: 'Total de Categorias'
     platforms: 'Total de Consoles'
