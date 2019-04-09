@@ -16,10 +16,11 @@ end
 
 # empresas
 
-if (!Company.find_by(name: 'Nintendo'))
-  c = Company.new(name: 'Nintendo')
-  c.logo.attach(io: File.open(Rails.root.join('spec', 'support', 'nintendo.png')), filename: 'nintendo.png')
-  c.save
+nintendo = Company.find_by(name: 'Nintendo')
+if nintendo.nil?
+  nintendo = Company.new(name: 'Nintendo')
+  nintendo.logo.attach(io: File.open(Rails.root.join('spec', 'support', 'nintendo.png')), filename: 'nintendo.png')
+  nintendo.save
 end
 
 if (!Company.find_by(name: 'Sega'))
@@ -42,20 +43,22 @@ end
 
 # plataformas
 
-if (!Platform.find_by(name: 'Super Nintendo'))
-  p = Platform.new(name: 'Super Nintendo', company: Company.find_by(name: 'Nintendo'))
-  p.logo.attach(io: File.open(Rails.root.join('spec', 'support', 'snes.png')), filename: 'snes.png')
-  p.save
+snes = Platform.find_by(name: 'Super Nintendo')
+if snes.nil?
+  snes = Platform.new(name: 'Super Nintendo', company: nintendo)
+  snes.logo.attach(io: File.open(Rails.root.join('spec', 'support', 'snes.png')), filename: 'snes.png')
+  snes.save
 end
 
-if (!Platform.find_by(name: 'Mega Drive'))
-  p = Platform.new(name: 'Mega Drive', company: Company.find_by(name: 'Sega'))
-  p.logo.attach(io: File.open(Rails.root.join('spec', 'support', 'megadrive.png')), filename: 'megadrive.png')
-  p.save
+megadrive = Platform.find_by(name: 'Mega Drive')
+if megadrive.nil?
+  megadrive = Platform.new(name: 'Mega Drive', company: Company.find_by(name: 'Sega'))
+  megadrive.logo.attach(io: File.open(Rails.root.join('spec', 'support', 'megadrive.png')), filename: 'megadrive.png')
+  megadrive.save
 end
 
 if (!Platform.find_by(name: 'Nintendo Switch'))
-  p = Platform.new(name: 'Nintendo Switch', company: Company.find_by(name: 'Nintendo'))
+  p = Platform.new(name: 'Nintendo Switch', company: nintendo)
   p.logo.attach(io: File.open(Rails.root.join('spec', 'support', 'switch.png')), filename: 'switch.png')
   p.save
 end
@@ -80,8 +83,62 @@ def create_category(name)
   end
 end
 
-categories = ['RPG', 'FPS', 'Plataforma', 'Esporte', 'Aventura']
+categories = ['RPG', 'FPS', 'Plataforma', 'Esporte', 'Aventura', 'Ação', 'Beat \'em Up', 'Dungeon Crawl']
 categories.each { |c| create_category(c) }
 
 # todo games
+
+if !Game.find_by(name: 'Super Mario Kart')
+  game = Game.new(name: 'Super Mario Kart', release_year: 1992)
+  game.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'mariokart.jpg')), filename: 'mariokart.jpg')
+  game.save
+  GamePlatform.create(game: game, platform: snes)
+  CategoryGame.create(category: Category.find_by(name: 'Esporte'), game: game)
+end
+
+if !Game.find_by(name: 'Super Bomberman')
+  game = Game.new(name: 'Super Bomberman', release_year: 1993)
+  game.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'bomberman.jpg')), filename: 'bomberman.jpg')
+  game.save
+  GamePlatform.create(game: game, platform: snes)
+  CategoryGame.create(category: Category.find_by(name: 'Ação'), game: game)
+  CategoryGame.create(category: Category.find_by(name: 'Aventura'), game: game)
+end
+
+if !Game.find_by(name: 'Mega Man X')
+  game = Game.new(name: 'Mega Man X', release_year: 1994)
+  game.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'megamanx.jpg')), filename: 'megamanx.jpg')
+  game.save
+  GamePlatform.create(game: game, platform: snes)
+  CategoryGame.create(category: Category.find_by(name: 'Ação'), game: game)
+  CategoryGame.create(category: Category.find_by(name: 'Plataforma'), game: game)
+end
+
+if !Game.find_by(name: 'Streets of Rage')
+  game = Game.new(name: 'Streets of Rage', release_year: 1991)
+  game.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'streetsofrage.jpg')), filename: 'streetsofrage.jpg')
+  game.save
+  GamePlatform.create(game: game, platform: megadrive)
+  CategoryGame.create(category: Category.find_by(name: 'Beat \'em Up'), game: game)
+end
+
+if !Game.find_by(name: 'Sonic the Hedgehog')
+  game = Game.new(name: 'Sonic the Hedgehog', release_year: 1991)
+  game.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'sonic.jpg')), filename: 'sonic.jpg')
+  game.save
+  GamePlatform.create(game: game, platform: megadrive)
+  CategoryGame.create(category: Category.find_by(name: 'Plataforma'), game: game)
+end
+
+if !Game.find_by(name: 'Dark Souls')
+  game = Game.new(name: 'Dark Souls', release_year: 2011)
+  game.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'darksouls.jpg')), filename: 'darksouls.jpg')
+  game.save
+  GamePlatform.create(game: game, platform: Platform.find_by(name: 'Playstation 4'))
+  GamePlatform.create(game: game, platform: Platform.find_by(name: 'X Box One'))
+  GamePlatform.create(game: game, platform: Platform.find_by(name: 'Nintendo Switch'))
+  CategoryGame.create(category: Category.find_by(name: 'Ação'), game: game)
+  CategoryGame.create(category: Category.find_by(name: 'RPG'), game: game)
+  CategoryGame.create(category: Category.find_by(name: 'Dungeon Crawl'), game: game)
+end
 
