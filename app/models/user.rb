@@ -9,7 +9,11 @@ class User < ApplicationRecord
   has_many :games, through: :game_users, dependent: :destroy
   has_many :game_platforms, through: :games
   has_many :events, dependent: :destroy
-  has_many :received_invites, class_name: "EventInvite", foreign_key: :invitee_id
+  has_many :received_invites,
+           class_name: 'EventInvite',
+           foreign_key: :invitee_id,
+           dependent: :destroy,
+           inverse_of: :invitee
 
   has_one_attached :avatar
 

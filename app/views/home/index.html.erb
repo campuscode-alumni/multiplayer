@@ -2,6 +2,27 @@
 
 <% if user_signed_in? %>
   <div>
+
+    <div class="mt-3">
+      <h3><%= t('upcoming.events') %></h3>
+
+      <% if @events.any? %>
+        <% @events.each do |event| %>
+          <div>
+            <p>
+            <span>
+              <%= link_to event.title %>
+            </span>
+            <% if event.event_participations.count == event.user_limit %>
+              <%= image_tag('/assets/events/full_attendance.png', title: t(:full_attendance)) %>
+            <% end %>
+            </p>
+            <p><%= "Criado por: #{event.user.nickname}" %></p>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
     <div>
       <h3><%= t('last.games') %></h3>
 
@@ -26,25 +47,6 @@
         </div>
       <% end %>
     </div>
-
-    <div class="mt-3">
-      <h3><%= t('upcoming.events') %></h3>
-
-      <% if @events.any? %>
-        <% @events.each do |event| %>
-          <div>
-            <p>
-            <span>
-              <%= link_to event.title %>
-            </span>
-            <% if event.event_participations.count == event.user_limit %>
-              <%= image_tag('/assets/events/full_attendance.png', title: t(:full_attendance)) %>
-            <% end %>
-            </p>
-            <p><%= "Criado por: #{event.user.nickname}" %></p>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
+    
   </div>
 <% end %>

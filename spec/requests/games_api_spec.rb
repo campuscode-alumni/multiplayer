@@ -18,7 +18,7 @@ RSpec.describe 'Games API' do
       expect(response.body).to include 'God of War'
       expect(response.body).to include 'Life is Strange'
     end
-    
+
     it 'should delete a game' do
       create(:game, name: 'God of War', release_year: 2018)
 
