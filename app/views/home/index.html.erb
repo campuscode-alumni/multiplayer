@@ -5,14 +5,17 @@
   <p><%= link_to t('register.company'), new_company_path %></p>
   <p><%= link_to t('register.game'), new_game_path %></p>
   <p><%= link_to t('register.platform'), new_platform_path %></p>
-<% end %>
 
-<p><%= link_to t('view.categories'), categories_path %></p>
-<p><%= link_to t('view.platforms'), platforms_path %></p>
+  <p><%= link_to t('view.categories'), categories_path %></p>
+  <p><%= link_to t('view.platforms'), platforms_path %></p>
+<% end %>
 
 <div>
   <div>
-    <p><%= link_to t('create.event'), new_event_path %></p>
+    <% if user_signed_in? %>
+      <p><%= link_to t('create.event'), new_event_path %></p>
+      <p><%= link_to t('view.received_invites'), received_invites_user_path(current_user) %></p>
+    <% end %>
   </div>
 
   <div>

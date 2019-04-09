@@ -1,0 +1,11 @@
+<h1><%= t('my.invites') %></h1>
+
+<% @received_invites.each do |invite| %>
+  <p>
+    <%= link_to invite.event.title %>
+    <%= link_to 'Aceitar' %>
+    <%= link_to 'Recusar' %>
+  </p>
+<% end %>
+
+<h3><%= t('my.invites_count', total: @received_invites.count) %></h3>

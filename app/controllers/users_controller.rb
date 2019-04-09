@@ -29,6 +29,10 @@ class UsersController < ApplicationController
     redirect_to @user
   end
 
+  def received_invites
+    @received_invites = EventInvite.where(invitee: current_user)
+  end
+
   private
 
   def params_user

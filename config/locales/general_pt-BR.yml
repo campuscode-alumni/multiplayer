@@ -42,6 +42,10 @@ pt-BR:
   view:
     categories: 'Ver Categorias cadastradas'
     platforms: 'Ver Consoles Cadastrados'
+    received_invites: 'Ver convites recebidos'
+  my:
+    invites_count: "Você tem %{total} convites de eventos"
+    invites: 'Meus Convites'
   last:
     games: 'Últimos Jogos adicionados'
   upcoming:
