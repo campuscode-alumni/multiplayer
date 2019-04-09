@@ -1,66 +1,48 @@
 <h1><%= t(:welcome_message) %></h1>
-
-<% if admin_signed_in? %>
-  <p><%= link_to t('register.category'), new_category_path %></p>
-  <p><%= link_to t('register.company'), new_company_path %></p>
-  <p><%= link_to t('register.game'), new_game_path %></p>
-  <p><%= link_to t('register.platform'), new_platform_path %></p>
-<% end %>
-
-<p><%= link_to t('view.categories'), categories_path %></p>
-<p><%= link_to t('view.platforms'), platforms_path %></p>
-
 <% if user_signed_in? %>
   <div>
-    <div>
-      <p><%= link_to t('create.event'), new_event_path %></p>
-    </div>
+    <h3><%= t('last.games') %></h3>
 
-    <div>
-      <p><%= link_to t('find.events') %></p>
-      <p><%= link_to t('find.games'), search_games_path %></p>
-      <p><%= link_to t('find.users') %></p>
-    </div>
-
-    <div>
-      <h3><%= t('last.games') %></h3>
-
-      <% if @games.any? %>
-        <ul>
-          <% @games.each do |game| %>
-            <li>
-              <p>
-                <%= link_to game.name %>
-              </p>
-              <% if !current_user.games.exists?(game.id) %>
-                <p>
-                  <%= link_to t('add.to_my_profile'), add_game_path(game), method: :patch %>
-                </p>
-              <% end %>
-            </li>
-          <% end %>
-        </ul>
-      <% end %>
-    </div>
-
-    <div>
-      <h3><%= t('upcoming.events') %></h3>
-
-      <% if @events.any? %>
-        <% @events.each do |event| %>
-          <div>
-            <p>
-              <span>
-                <%= link_to event.title %>
-              </span>
-              <% if event.event_participations.count == event.user_limit %>
-                <%= image_tag('/assets/events/full_attendance.png', title: t(:full_attendance)) %>
-              <% end %>
-            </p>
-            <p><%= "Criado por: #{event.user.nickname}" %></p>
+    <% if @games.any? %>
+      <div class="row">
+        <% @games.each do |game| %>
+          <div class="card ml-3 mt-3" style="width: 20rem;">
+            <% if game.photo.attached? %>
+              <div class="card-img">
+                <%= image_tag game.photo.variant(resize: '320x'), class: '' %>
+              </div>
+              <div class="card-body"></div>
+              <div class="card-footer">
+                <h5><%= link_to game.name %></h5>
+                <% if !current_user.games.exists?(game.id) %>
+                  <%= link_to t('add.to_my_profile'), add_game_path(game), method: :patch, class: 'btn btn-primary' %>
+                <% end %>
+              </div>
+            <% end %>
           </div>
         <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="mt-3">
+    <h3><%= t('upcoming.events') %></h3>
+
+    <% if @events.any? %>
+      <% @events.each do |event| %>
+        <div>
+          <p>
+          <span>
+            <%= link_to event.title %>
+          </span>
+          <% if event.event_participations.count == event.user_limit %>
+            <%= image_tag('/assets/events/full_attendance.png', title: t(:full_attendance)) %>
+          <% end %>
+          </p>
+          <p><%= "Criado por: #{event.user.nickname}" %></p>
+        </div>
       <% end %>
-    </div>
+    <% end %>
+  </div>
   </div>
 <% end %>

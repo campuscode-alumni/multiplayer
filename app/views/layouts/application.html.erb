@@ -10,36 +10,38 @@
   </head>
 
   <body>
-
-    <nav>
-      <% if admin_signed_in? %>
-        <p>
-          <span>
-            <%= "#{t(:authenticated_as)}: #{current_admin.email}" %>
-          </span>
-          <%= image_tag('/assets/admins/admin_star.png', title: t(:authenticated_as_admin)) %>
-        </p>
-        <%= link_to 'Logout', destroy_admin_session_path, method: :delete %>
-      <% end %>
-    </nav>
-
-    <nav>
+    <div class="d-flex" id="wrapper">
       <% if user_signed_in? %>
-        <p>
-          <span>
-            <%= "#{t(:authenticated_as)}: #{current_user.email}" %>
-          </span>
-        </p>
-        <%= link_to 'Editar Perfil', edit_user_path(current_user) %>
-        <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
-      <% else %>
-        <%= link_to 'Entrar', new_user_session_path %>
+        <%= render 'shared/sidebar' %>
       <% end %>
-    </nav>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+      <div id="page-content-wrapper">
+        <%= render 'shared/navbar' %>
 
-    <%= yield %>
+        <nav>
+          <% if admin_signed_in? %>
+            <p>
+            <span>
+              <%= "#{t(:authenticated_as)}: #{current_admin.email}" %>
+            </span>
+            <%= image_tag('/assets/admins/admin_star.png', title: t(:authenticated_as_admin)) %>
+            </p>
+            <%= link_to 'Logout', destroy_admin_session_path, method: :delete %>
+          <% end %>
+        </nav>
+
+
+        <div class="content">
+          <% if user_signed_in? %>
+            <span>
+              <%= "#{t(:authenticated_as)}: #{current_user.email}" %>
+            </span>
+          <% end %>
+
+          <%= render 'shared/flashes' %>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

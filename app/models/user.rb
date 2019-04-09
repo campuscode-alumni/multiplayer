@@ -14,7 +14,7 @@ class User < ApplicationRecord
 
   validates :name, presence: true
   validates :nickname, presence: true, on: :update
-  validates :nickname, uniqueness: true
+  validates :nickname, uniqueness: true, on: :update
 
   def event_options
     events.map { |e| [e.title, e.id] }
