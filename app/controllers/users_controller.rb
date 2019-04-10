@@ -31,6 +31,20 @@ class UsersController < ApplicationController
 
   def received_invites; end
 
+  def accept_invite
+    @invite = EventInvite.find(params[:id])
+    @invite.update(invite_respond: :approved)
+    flash[:notice] = 'Convite aceito com sucesso!'
+    redirect_to received_invites_user_path(current_user)
+  end
+
+  def decline_invite
+    @invite = EventInvite.find(params[:id])
+    @invite.update(invite_respond: :declined)
+    flash[:notice] = 'Convite recusado com sucesso!'
+    redirect_to received_invites_user_path(current_user)
+  end
+
   private
 
   def params_user

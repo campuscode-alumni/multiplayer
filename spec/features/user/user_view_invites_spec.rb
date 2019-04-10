@@ -35,7 +35,7 @@ feature 'User view invites' do
     expect(page).to have_content('Você não tem nenhum novo convite')
   end
 
-  scenario 'but there are no invites' do
+  scenario 'and view star with invite count' do
     user = create(:user)
     event = create(:event)
     create(:event_invite, invitee: user, event: event)
@@ -46,5 +46,33 @@ feature 'User view invites' do
     expect(page).to have_link('Ver convites recebidos')
     expect(page).to have_css('img[src*="received_invites.png"]')
     expect(page).to have_css('img[title*="Você tem 1 convites de eventos"]')
+  end
+
+  scenario 'and accepts invite' do
+    user = create(:user)
+    event = create(:event)
+    create(:event_invite, invitee: user, event: event)
+
+    login_as user, scope: :user
+    visit received_invites_user_path(user)
+    click_on 'Aceitar'
+
+    expect(page).not_to have_link('Aceitar')
+    expect(page).not_to have_link('Recusar')
+    expect(page).to have_content('Convite aceito com sucesso!')
+  end
+
+  scenario 'and refuses invite' do
+    user = create(:user)
+    event = create(:event)
+    create(:event_invite, invitee: user, event: event)
+
+    login_as user, scope: :user
+    visit received_invites_user_path(user)
+    click_on 'Recusar'
+
+    expect(page).not_to have_link('Aceitar')
+    expect(page).not_to have_link('Recusar')
+    expect(page).to have_content('Convite recusado com sucesso!')
   end
 end

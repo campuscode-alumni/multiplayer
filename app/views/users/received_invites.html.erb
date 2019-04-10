@@ -3,11 +3,13 @@
 <% if current_user.received_invites.count > 0 %>
   
   <% current_user.received_invites.each do |invite| %>
+    <% if invite.invite_respond.nil? %>
     <p>
       <%= link_to invite.event.title %>
-      <%= link_to 'Aceitar' %>
-      <%= link_to 'Recusar' %>
+      <%= link_to 'Aceitar', accept_invite_user_path %>
+      <%= link_to 'Recusar', decline_invite_user_path %>
     </p>
+    <% end %>
   <% end %>
 
   <h3><%= t('my.invites_count', total: current_user.received_invites.count) %></h3>
