@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :event do
-    title { 'MyString' }
+    sequence(:title) { |i| "Evento #{i}" }
     user
     game_platform
-    description { 'MyText' }
+    description { (0...30).map { ('a'..'z').to_a[rand(26)] }.join }
     event_date { Time.zone.now + 3.days }
     user_limit { 1 }
     event_type { 1 }

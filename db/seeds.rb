@@ -1,9 +1,20 @@
-if (!Admin.find_by(email: 'admin@admin.com'))
+if !Admin.find_by(email: 'admin@admin.com')
   Admin.create(email: 'admin@admin.com', password: '12345678')
 end
 
-if (!User.find_by(email: 'user@user.com'))
-  User.create(name: 'user', email: 'user@user.com', password: '123456')
+user1 = User.find_by(email: 'user@user.com')
+if user1.nil?
+  User.create(name: 'user', email: 'user@user.com', password: '123456', nickname: 'fire-user')
+end
+user2 = User.find_by(email: 'user2@user.com')
+if user2.nil?
+  User.create(name: 'user 2', email: 'user2@user.com', password: '123456', nickname: 'air-user')
+end
+if !User.find_by(email: 'user3@user.com')
+  User.create(name: 'user 3', email: 'user3@user.com', password: '123456', nickname: 'water-user')
+end
+if !User.find_by(email: 'user4@user.com')
+  User.create(name: 'user 4', email: 'user4@user.com', password: '123456', nickname: 'soil-user')
 end
 
 if (!City.find_by(name: 'São Paulo'))
@@ -23,19 +34,19 @@ if nintendo.nil?
   nintendo.save
 end
 
-if (!Company.find_by(name: 'Sega'))
+if !Company.find_by(name: 'Sega')
   c = Company.new(name: 'Sega')
   c.logo.attach(io: File.open(Rails.root.join('spec', 'support', 'sega.png')), filename: 'sega.png')
   c.save
 end
 
-if (!Company.find_by(name: 'Sony'))
+if !Company.find_by(name: 'Sony')
   c = Company.new(name: 'Sony')
   c.logo.attach(io: File.open(Rails.root.join('spec', 'support', 'sony.png')), filename: 'sony.png')
   c.save
 end
 
-if (!Company.find_by(name: 'Microsoft'))
+if !Company.find_by(name: 'Microsoft')
   c = Company.new(name: 'Microsoft')
   c.logo.attach(io: File.open(Rails.root.join('spec', 'support', 'microsoft.png')), filename: 'microsoft.png')
   c.save
@@ -57,19 +68,19 @@ if megadrive.nil?
   megadrive.save
 end
 
-if (!Platform.find_by(name: 'Nintendo Switch'))
+if !Platform.find_by(name: 'Nintendo Switch')
   p = Platform.new(name: 'Nintendo Switch', company: nintendo)
   p.logo.attach(io: File.open(Rails.root.join('spec', 'support', 'switch.png')), filename: 'switch.png')
   p.save
 end
 
-if (!Platform.find_by(name: 'Playstation 4'))
+if !Platform.find_by(name: 'Playstation 4')
   p = Platform.new(name: 'Playstation 4', company: Company.find_by(name: 'Sony'))
   p.logo.attach(io: File.open(Rails.root.join('spec', 'support', 'ps4.png')), filename: 'ps4.png')
   p.save
 end
 
-if (!Platform.find_by(name: 'X Box One'))
+if !Platform.find_by(name: 'X Box One')
   p = Platform.new(name: 'X Box One', company: Company.find_by(name: 'Microsoft'))
   p.logo.attach(io: File.open(Rails.root.join('spec', 'support', 'xone.png')), filename: 'xone.png')
   p.save
@@ -96,7 +107,8 @@ if !Game.find_by(name: 'Super Mario Kart')
   CategoryGame.create(category: Category.find_by(name: 'Esporte'), game: game)
 end
 
-if !Game.find_by(name: 'Super Bomberman')
+bomberman = Game.find_by(name: 'Super Bomberman')
+if bomberman.nil?
   game = Game.new(name: 'Super Bomberman', release_year: 1993)
   game.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'bomberman.jpg')), filename: 'bomberman.jpg')
   game.save
@@ -130,7 +142,8 @@ if !Game.find_by(name: 'Sonic the Hedgehog')
   CategoryGame.create(category: Category.find_by(name: 'Plataforma'), game: game)
 end
 
-if !Game.find_by(name: 'Dark Souls')
+dark_souls = Game.find_by(name: 'Dark Souls')
+if dark_souls.nil?
   game = Game.new(name: 'Dark Souls', release_year: 2011)
   game.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'darksouls.jpg')), filename: 'darksouls.jpg')
   game.save
@@ -142,3 +155,31 @@ if !Game.find_by(name: 'Dark Souls')
   CategoryGame.create(category: Category.find_by(name: 'Dungeon Crawl'), game: game)
 end
 
+today = Time.zone.today
+if !Event.find_by(title: 'Noite difícil com Dark Souls')
+  event1 = Event.create(
+    user: user1,
+    title: 'Noite difícil com Dark Souls',
+    game_platform: GamePlatform.find_by(game: dark_souls, platform: Platform.find_by(name: 'Playstation 4')),
+    description: 'Se divertir vendo as outras pessoas sofrendo para completar o game',
+    event_date: today + 2.days,
+    user_limit: 4,
+    event_type: :presential,
+    event_location: 'Alameda Santos, 1293'
+  )
+  EventParticipation.create(event: event1, user: user1)
+end
+
+if !Event.find_by(title: 'Batalha explosiva de Bomberman')
+  event2 = Event.create(
+    user: user2,
+    title: 'Batalha explosiva de Bomberman',
+    game_platform: GamePlatform.find_by(game: bomberman, platform: snes),
+    description: 'Cada perdedor das batalhas vira uma dose de Seleta',
+    event_date: today + 3.days,
+    user_limit: 5,
+    event_type: :presential,
+    event_location: 'Alameda Santos, 1293'
+  )
+  EventParticipation.create(event: event2, user: user2)
+end

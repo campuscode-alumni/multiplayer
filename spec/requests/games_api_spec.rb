@@ -19,7 +19,16 @@ RSpec.describe 'Games API' do
       expect(response.body).to include 'Life is Strange'
     end
 
-    it 'delete a game that does not exist' do
+    it 'should delete a game' do
+      create(:game, name: 'God of War', release_year: 2018)
+
+      delete '/api/v1/games/1'
+
+      expect(response.status).to eq 200
+      expect(response.body).to include 'Game God of War deletado com sucesso'
+    end
+
+    it 'should not delete a game that does not exist' do
       delete '/api/v1/games/999'
 
       expect(response.status).to eq 404

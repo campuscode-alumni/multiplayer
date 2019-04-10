@@ -73,6 +73,14 @@ feature 'User views timeline' do
     expect(page).to have_content(manha_dc.title)
     expect(page).to have_content(bf_play.title)
     expect(page).not_to have_content(sprun_night.title)
+    expect(page).not_to have_content(jogatina.description)
+    expect(page).to have_content(super_jogatina.description)
+    expect(page).to have_content(noite_play2.description)
+    expect(page).to have_content(tarde_ds.description)
+    expect(page).not_to have_content(tarde_gba.description)
+    expect(page).to have_content(manha_dc.description)
+    expect(page).to have_content(bf_play.description)
+    expect(page).not_to have_content(sprun_night.description)
   end
 
   scenario 'and see latest events with creators names' do
@@ -90,7 +98,7 @@ feature 'User views timeline' do
     expect(page).to have_content("Criado por: #{micro_event.user.nickname}")
   end
 
-  scenario 'and see latest with info about attendance' do
+  scenario 'and see event with info about attendance' do
     user = create(:user)
     event = create(:event, user_limit: 4)
     create(:event_participation, event: event)
@@ -100,9 +108,29 @@ feature 'User views timeline' do
 
     login_as(user, scope: :user)
     visit root_path
-    save_page
+
     expect(page).to have_content(event.title)
     expect(page).to have_css('img[src*="full_attendance.png"]')
     expect(page).to have_css('img[title*="Todas as vagas estão preenchidas"]')
+  end
+
+  scenario 'and do not see any upcoming events' do
+    text = 'Não há nenhum evento nas proximidades acontecendo no próximo dia'
+    user = create(:user)
+    today = Time.zone.today
+    tarde_gba = create(
+      :event, title: 'Tarde do Game Boy Advance', event_date: today - 2.days
+    )
+    sprun_night = create(
+      :event, title: 'Noite do Speedrun', event_date: today - 4.days
+    )
+
+    login_as(user, scope: :user)
+    visit root_path
+
+    expect(page).not_to have_link(tarde_gba.title)
+    expect(page).not_to have_link(sprun_night.title)
+    expect(page).to have_content(text)
+    expect(page).to have_link('Movimente sua comunidade! Crie um Evento!')
   end
 end

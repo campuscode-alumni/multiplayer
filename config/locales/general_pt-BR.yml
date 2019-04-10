@@ -8,6 +8,7 @@ pt-BR:
     my: 'Meus Jogos'
   create:
     event: 'Quero criar um novo Evento'
+    amused_event: 'Movimente sua comunidade! Crie um Evento!'
   register:
     category: 'Cadastrar Categoria de Jogo'
     company: 'Cadastrar Empresa Fabricante'
@@ -44,10 +45,16 @@ pt-BR:
   view:
     categories: 'Ver Categorias cadastradas'
     platforms: 'Ver Consoles Cadastrados'
+    received_invites: 'Ver convites recebidos'
+  my:
+    invites_count: "Você tem %{total} convites de eventos"
+    invites_none: 'Você não tem nenhum novo convite'
+    invites: 'Meus Convites'
   last:
     games: 'Últimos Jogos adicionados'
   upcoming:
     events: 'Próximos Eventos'
+  no_upcoming_events: 'Não há nenhum evento nas proximidades acontecendo no próximo dia'
   total:
     categories: 'Total de Categorias'
     platforms: 'Total de Consoles'
