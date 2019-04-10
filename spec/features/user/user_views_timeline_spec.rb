@@ -66,13 +66,21 @@ feature 'User views timeline' do
 
     expect(page).to have_css('h3', text: 'Próximos Eventos')
     expect(page).not_to have_link(jogatina.title)
+    expect(page).not_to have_content(jogatina.description)
     expect(page).to have_link(super_jogatina.title)
+    expect(page).to have_content(super_jogatina.description)
     expect(page).to have_link(noite_play2.title)
+    expect(page).to have_content(noite_play2.description)
     expect(page).to have_link(tarde_ds.title)
+    expect(page).to have_content(tarde_ds.description)
     expect(page).not_to have_link(tarde_gba.title)
+    expect(page).not_to have_content(tarde_gba.description)
     expect(page).to have_link(manha_dc.title)
+    expect(page).to have_content(manha_dc.description)
     expect(page).to have_link(bf_play.title)
+    expect(page).to have_content(bf_play.description)
     expect(page).not_to have_link(sprun_night.title)
+    expect(page).not_to have_content(sprun_night.description)
   end
 
   scenario 'and see latest events with creators names' do
