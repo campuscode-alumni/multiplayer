@@ -21,7 +21,12 @@
                   <%= image_tag('/assets/events/full_attendance.png', title: t(:full_attendance)) %>
                 <% end %>
                 <p><%= event.description.truncate(100) %>...</p>
-                <p><%= "Criado por: #{event.user.nickname}" %></p>
+                <p>
+                  <%= "Criado por: #{event.user.nickname}" %>
+                </p>
+                <p>
+                  <%= "Participantes: #{event.event_participations.count}/#{event.user_limit}" %>
+                </p>
                 <%= link_to 'Ver detalhes', event %>
               </div>
             </div>

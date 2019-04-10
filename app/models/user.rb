@@ -14,11 +14,12 @@ class User < ApplicationRecord
            foreign_key: :user_id,
            dependent: :destroy,
            inverse_of: :user
-  has_many :received_invites,
+  has_many :received_invites, -> { where(invite_respond: nil) },
            class_name: 'EventInvite',
            foreign_key: :invitee_id,
            dependent: :destroy,
            inverse_of: :invitee
+           
 
   has_one_attached :avatar
 
