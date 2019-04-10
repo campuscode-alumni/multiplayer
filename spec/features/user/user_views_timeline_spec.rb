@@ -107,6 +107,7 @@ feature 'User views timeline' do
   end
 
   scenario 'and do not see any upcoming events' do
+    text = 'Não há nenhum evento nas proximidades acontecendo no próximo dia'
     user = create(:user)
     today = Time.zone.today
     tarde_gba = create(
@@ -121,7 +122,7 @@ feature 'User views timeline' do
 
     expect(page).not_to have_link(tarde_gba.title)
     expect(page).not_to have_link(sprun_night.title)
-    expect(page).to have_content('Não há nenhum evento nas proximidades acontecendo no próximo dia')
+    expect(page).to have_content(text)
     expect(page).to have_link('Movimente sua comunidade! Crie um Evento!')
   end
 end

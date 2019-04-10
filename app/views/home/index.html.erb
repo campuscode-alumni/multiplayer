@@ -11,7 +11,7 @@
           <div>
             <p>
             <span>
-              <%= link_to event.title %>
+              <%= link_to event.title, event_path(event) %>
             </span>
             <% if event.event_participations.count == event.user_limit %>
               <%= image_tag('/assets/events/full_attendance.png', title: t(:full_attendance)) %>
