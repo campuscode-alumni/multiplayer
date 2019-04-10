@@ -2,8 +2,17 @@ if (!Admin.find_by(email: 'admin@admin.com'))
   Admin.create(email: 'admin@admin.com', password: '12345678')
 end
 
-if (!User.find_by(email: 'user@user.com'))
-  User.create(name: 'user', email: 'user@user.com', password: '123456')
+if !User.find_by(email: 'user@user.com')
+  User.create(name: 'user', email: 'user@user.com', password: '123456', nickname: 'fire-user')
+end
+if !User.find_by(email: 'user2@user.com')
+  User.create(name: 'user 2', email: 'user2@user.com', password: '123456', nickname: 'air-user')
+end
+if !User.find_by(email: 'user3@user.com')
+  User.create(name: 'user 3', email: 'user3@user.com', password: '123456', nickname: 'water-user')
+end
+if !User.find_by(email: 'user4@user.com')
+  User.create(name: 'user 4', email: 'user4@user.com', password: '123456', nickname: 'soil-user')
 end
 
 if (!City.find_by(name: 'São Paulo'))
