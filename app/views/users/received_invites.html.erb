@@ -1,18 +1,16 @@
 <h1><%= t('my.invites') %></h1>
 
-<% if current_user.received_invites.count > 0 %>
+<% if @received_invites.count > 0 %>
   
-  <% current_user.received_invites.each do |invite| %>
-    <% if invite.invite_respond.nil? %>
+  <% @received_invites.each do |invite| %>
     <p>
       <%= link_to invite.event.title %>
-      <%= link_to 'Aceitar', accept_invite_user_path(invite) %>
-      <%= link_to 'Recusar', decline_invite_user_path(invite) %>
+      <%= link_to 'Aceitar', accept_invite_user_path(invite), method: :post %>
+      <%= link_to 'Recusar', decline_invite_user_path(invite), method: :post %>
     </p>
-    <% end %>
   <% end %>
 
-  <h3><%= t('my.invites_count', total: current_user.received_invites.count) %></h3>
+  <h3><%= t('my.invites_count', total: @received_invites.count) %></h3>
 
 <% else %>
   <h3><%= t('my.invites_none') %></h3>    

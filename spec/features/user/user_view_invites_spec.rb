@@ -20,6 +20,25 @@ feature 'User view invites' do
     expect(page).to have_content('Você tem 2 convites de eventos')
   end
 
+  scenario 'that were not responded' do
+    user = create(:user)
+    event1 = create(:event)
+    event2 = create(:event)
+    create(:event_invite, :approved, invitee: user, event: event1)
+    create(:event_invite, invitee: user, event: event2)
+
+    login_as user, scope: :user
+    visit root_path
+    click_on 'Ver convites recebidos'
+
+    expect(page).to have_css('h1', text: 'Meus Convites')
+    expect(page).not_to have_link(event1.title)
+    expect(page).to have_link(event2.title)
+    expect(page).to have_link('Aceitar', count: 1)
+    expect(page).to have_link('Recusar', count: 1)
+    expect(page).to have_content('Você tem 1 convites de eventos')
+  end
+
   scenario 'but there are no invites' do
     user = create(:user)
     event = create(:event)
@@ -50,7 +69,9 @@ feature 'User view invites' do
 
   scenario 'and accepts invite' do
     user = create(:user)
+    event_owner = create(:user)
     event = create(:event)
+    create(:event_participation, event: event, user: event_owner)
     create(:event_invite, invitee: user, event: event)
 
     login_as user, scope: :user
@@ -60,11 +81,14 @@ feature 'User view invites' do
     expect(page).not_to have_link('Aceitar')
     expect(page).not_to have_link('Recusar')
     expect(page).to have_content('Convite aceito com sucesso!')
+    expect(EventParticipation.count).to eq(2)
   end
 
   scenario 'and refuses invite' do
     user = create(:user)
+    event_owner = create(:user)
     event = create(:event)
+    create(:event_participation, event: event, user: event_owner)
     create(:event_invite, invitee: user, event: event)
 
     login_as user, scope: :user
@@ -74,5 +98,6 @@ feature 'User view invites' do
     expect(page).not_to have_link('Aceitar')
     expect(page).not_to have_link('Recusar')
     expect(page).to have_content('Convite recusado com sucesso!')
+    expect(EventParticipation.count).to eq(1)
   end
 end
