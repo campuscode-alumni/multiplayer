@@ -1,9 +1,10 @@
 <h2><%= t('register.company') %></h2>
 
-<%= simple_form_for @company do |f| %>
+<%= simple_form_for @company, html: { class: 'col-md-6 mb-4' } do |f| %>
   <%= f.input :name %>
-  <%= f.input :logo, as: :file %>
-  <%= f.submit t(:submit) %>
+  <%= f.input :logo, as: :file, wrapper_html: { class: 'custom-file mb-2' },
+    input_html: { class: 'custom-file-input' }, label_html: { class: 'custom-file-label' } %>
+  <%= f.submit t(:submit), class: 'btn btn-primary' %>
 <% end %>
 
 <p><%= link_to t(:back), root_path %></p>

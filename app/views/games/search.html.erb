@@ -1,36 +1,33 @@
 <h1><%= t('search.games') %></h1>
 
-<%= form_tag search_games_path, method: :get do %>
-  <%= label_tag(:q, t('search.for')) %>
-  <%= text_field_tag(:q) %>
-  <%= submit_tag(t('search.submit')) %>
+<%= simple_form_for :search, url: search_games_path, method: :get do |f| %>
+  <%= f.input :q, label: t('search.for') %>
+  <%= f.submit t('search.submit'), class: 'btn btn-primary' %>
 <% end %>
 
-<div>
-  
-  <% if !@games.nil? %>
-    <ul>
+<div class="mt-4">
+  <% if @games&.any? %>
+    <%= t('found.games', count: @games.count) %>
+    <div class="row">
       <% @games.each do |game| %>
-        <li>
-          <p>
-            <%= link_to game.name %>
-          </p>
-          <% if !current_user.games.exists?(game.id) %>
-            <p>
-              <%= link_to t('add.to_my_profile'), add_game_path(game), method: :patch %>
-            </p>
+        <div class="card ml-3 mt-3" style="width: 20rem;">
+          <% if game.photo.attached? %>
+            <div class="card-img">
+              <%= image_tag game.photo.variant(resize: '320x'), class: '' %>
+            </div>
           <% end %>
-        </li>
+          <div class="card-body"></div>
+          <div class="card-footer">
+            <h5><%= link_to game.name %></h5>
+            <% if !current_user.games.exists?(game.id) %>
+              <%= link_to t('add.to_my_profile'), add_game_path(game),
+                method: :patch, class: 'btn btn-primary' %>
+            <% end %>
+          </div>
+        </div>
       <% end %>
-    </ul>
-
-    <h3>
-      <% if @games.count > 0 %>
-        <%= t('found.games', total: @games.count) %>
-      <% else %>
-        <%= t('not.found.games') %>
-      <% end %>
-    </h3>
+    </div>
+  <% else %>
+    <%= t('not.found.games') %>
   <% end %>
-
 </div>

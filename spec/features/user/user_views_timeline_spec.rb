@@ -65,14 +65,14 @@ feature 'User views timeline' do
     visit root_path
 
     expect(page).to have_css('h3', text: 'Próximos Eventos')
-    expect(page).not_to have_link(jogatina.title)
-    expect(page).to have_link(super_jogatina.title)
-    expect(page).to have_link(noite_play2.title)
-    expect(page).to have_link(tarde_ds.title)
-    expect(page).not_to have_link(tarde_gba.title)
-    expect(page).to have_link(manha_dc.title)
-    expect(page).to have_link(bf_play.title)
-    expect(page).not_to have_link(sprun_night.title)
+    expect(page).not_to have_content(jogatina.title)
+    expect(page).to have_content(super_jogatina.title)
+    expect(page).to have_content(noite_play2.title)
+    expect(page).to have_content(tarde_ds.title)
+    expect(page).not_to have_content(tarde_gba.title)
+    expect(page).to have_content(manha_dc.title)
+    expect(page).to have_content(bf_play.title)
+    expect(page).not_to have_content(sprun_night.title)
   end
 
   scenario 'and see latest events with creators names' do
@@ -101,7 +101,7 @@ feature 'User views timeline' do
     login_as(user, scope: :user)
     visit root_path
     save_page
-    expect(page).to have_link(event.title)
+    expect(page).to have_content(event.title)
     expect(page).to have_css('img[src*="full_attendance.png"]')
     expect(page).to have_css('img[title*="Todas as vagas estão preenchidas"]')
   end

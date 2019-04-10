@@ -12,7 +12,7 @@ feature 'Admin Authenticate' do
     end
 
     expect(page).not_to have_link('Login')
-    expect(page).to have_link('Logout')
+    expect(page).to have_link('Sair')
     expect(page).to have_content("Logado como: #{admin.email}")
     expect(page).to have_css('img[src*="admin_star.png"]')
     expect(page).to have_css('img[title*="Logado como Admin"]')
@@ -27,9 +27,9 @@ feature 'Admin Authenticate' do
     within 'form' do
       click_on 'Login'
     end
-    click_on 'Logout'
+    click_on 'Sair'
 
-    expect(page).not_to have_link('Logout')
+    expect(page).not_to have_link('Sair')
     expect(page).not_to have_content("Logado como: #{admin.email}")
     expect(page).not_to have_css('img[src*="admin_star.png"]')
     expect(page).not_to have_css('img[title*="Logado como Admin"]')

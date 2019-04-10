@@ -11,14 +11,14 @@
               <div class="card-img">
                 <%= image_tag game.photo.variant(resize: '320x'), class: '' %>
               </div>
-              <div class="card-body"></div>
-              <div class="card-footer">
-                <h5><%= link_to game.name %></h5>
-                <% if !current_user.games.exists?(game.id) %>
-                  <%= link_to t('add.to_my_profile'), add_game_path(game), method: :patch, class: 'btn btn-primary' %>
-                <% end %>
-              </div>
             <% end %>
+            <div class="card-body"></div>
+            <div class="card-footer">
+              <h5><%= link_to game.name %></h5>
+              <% if !current_user.games.exists?(game.id) %>
+                <%= link_to t('add.to_my_profile'), add_game_path(game), method: :patch, class: 'btn btn-primary' %>
+              <% end %>
+            </div>
           </div>
         <% end %>
       </div>
@@ -29,19 +29,21 @@
     <h3><%= t('upcoming.events') %></h3>
 
     <% if @events.any? %>
-      <% @events.each do |event| %>
-        <div>
-          <p>
-          <span>
-            <%= link_to event.title %>
-          </span>
-          <% if event.event_participations.count == event.user_limit %>
-            <%= image_tag('/assets/events/full_attendance.png', title: t(:full_attendance)) %>
-          <% end %>
-          </p>
-          <p><%= "Criado por: #{event.user.nickname}" %></p>
-        </div>
-      <% end %>
+      <div class="row">
+        <% @events.each do |event| %>
+          <div class="card ml-3 mt-3" style="width: 20rem;">
+            <div class="card-body">
+              <h4 class="card-title"><%= event.title %></h4>
+              <h6 class="card-subtitle mb-2 text-muted"><%= event.event_type %></h6>
+              <% if event.event_participations.count == event.user_limit %>
+                <%= image_tag('/assets/events/full_attendance.png', title: t(:full_attendance)) %>
+              <% end %>
+              <p><%= "Criado por: #{event.user.nickname}" %></p>
+              <%= link_to 'Ver detalhes', event %>
+            </div>
+          </div>
+        <% end %>
+      </div>
     <% end %>
   </div>
   </div>

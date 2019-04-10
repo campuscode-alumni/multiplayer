@@ -6,7 +6,7 @@
     updateCities();
 
     $( "#user_state_id" ).change(function() {
-      updateCities();      
+      updateCities();
     });
 
       function updateCities(){
@@ -17,14 +17,11 @@
   });
 </script>
 
-<%= simple_form_for @user do |f| %>
-    <%= f.input :nickname %>
-    <%= f.input :avatar, as: :file %>
-    <%= f.label :state_id, 'Estado' %>
-    <%= f.collection_select :state_id, @states, :id, :name %>
-    <%= f.label :city_id, 'Cidade' %>
-    <div id="cities_collection">
-      <%= f.collection_select :city_id, @cities, :id, :name %>
-    </div>
-    <%= f.submit 'Atualizar' %>
+<%= simple_form_for @user, html: { class: 'col-md-6' } do |f| %>
+  <%= f.input :nickname, wrapper_html: { class: 'form-group' } %>
+  <%= f.input :avatar, as: :file, wrapper_html: { class: 'custom-file mb-2' },
+    input_html: { class: 'custom-file-input' }, label_html: { class: 'custom-file-label' } %>
+  <%= f.association :state, label: 'Estado' %>
+  <%= f.association :city, label: 'Cidade' %>
+  <%= f.submit 'Atualizar', class: 'btn btn-primary' %>
 <% end %>

@@ -1,8 +1,8 @@
 <h2><%= t('register.category') %></h2>
 
-<%= simple_form_for @new_category do |new| %>
+<%= simple_form_for @new_category, html: { class: 'col-md-6 mb-4' } do |new| %>
   <%= new.input :name %>
-  <%= new.submit t(:submit) %>
+  <%= new.submit t(:submit), class: 'btn btn-primary' %>
 <% end %>
 
 <p><%= link_to t(:back), root_path %></p>

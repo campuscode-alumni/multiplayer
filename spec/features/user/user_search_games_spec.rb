@@ -19,7 +19,7 @@ feature 'User search games' do
     expect(page).to have_link(mg.name)
     expect(page).to have_link(mk.name)
     expect(page).not_to have_link(sf.name)
-    expect(page).to have_content('Foram encontrados 3 Jogos')
+    expect(page).to have_content('Foram encontrados 3 jogos')
   end
 
   scenario 'from its own page' do
@@ -38,7 +38,7 @@ feature 'User search games' do
     expect(page).to have_link(oa.name)
     expect(page).to have_link(os.name)
     expect(page).not_to have_link(mz.name)
-    expect(page).to have_content('Foram encontrados 2 Jogos')
+    expect(page).to have_content('Foram encontrados 2 jogos')
   end
 
   scenario 'and finds no results' do
@@ -67,6 +67,6 @@ feature 'User search games' do
     expect(page).to have_css('h1', text: 'Pesquisar Jogos')
     expect(page).not_to have_link(cs.name)
     expect(page).not_to have_content('Foram encontrados')
-    expect(page).not_to have_content('Nenhum jogo encontrado')
+    expect(page).to have_content('Nenhum jogo encontrado')
   end
 end

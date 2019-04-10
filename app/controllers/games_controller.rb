@@ -23,7 +23,10 @@ class GamesController < ApplicationController
   end
 
   def search
-    @games = Game.where('name like ?', "%#{params[:q]}%") if params[:q].present?
+    search_param = params[:search]
+    return if search_param.blank?
+
+    @games = Game.where('name like ?', "%#{search_param[:q]}%")
   end
 
   def add
