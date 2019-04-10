@@ -1,19 +1,24 @@
 <h2><%= t('register.game') %></h2>
 
-<%= simple_form_for @game do |f| %>
+<%= simple_form_for @game, html: { class: 'mb-5 col-md-6' } do |f| %>
   <%= f.input :name %>
   <%= f.input :release_year %>
-  
+
   <%= f.simple_fields_for :category_games do |cg| %>
-    <%= cg.collection_check_boxes :category_games_ids, @categories, :id, :name %>
+    <h5>Categoria</h5>
+    <%= cg.collection_check_boxes :category_games_ids, @categories, :id, :name,
+      item_wrapper_class: 'form-check' %>
   <% end %>
 
   <%= f.simple_fields_for :game_platforms do |gp| %>
-    <%= gp.collection_check_boxes :game_platforms_ids, @platforms, :id, :name %>
+    <h5>Plataforma</h5>
+    <%= gp.collection_check_boxes :game_platforms_ids, @platforms, :id, :name,
+      item_wrapper_class: 'form-check' %>
   <% end %>
 
-  <%= f.input :photo, as: :file %>
-  <%= f.submit t(:submit) %>
+  <%= f.input :photo, as: :file, wrapper_html: { class: 'custom-file mb-2' },
+    input_html: { class: 'custom-file-input' }, label_html: { class: 'custom-file-label' } %>
+  <%= f.submit t(:submit), class: 'btn btn-primary' %>
 <% end %>
 
 <p><%= link_to t(:back), root_path %></p>
