@@ -22,9 +22,9 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[edit update show] do
     member do
-      get :accept_invite
-      get :decline_invite
       get :received_invites
+      post :accept_invite
+      post :decline_invite
       post :invite
     end
   end

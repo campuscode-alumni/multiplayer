@@ -55,7 +55,7 @@ feature 'User view invites' do
 
     login_as user, scope: :user
     visit received_invites_user_path(user)
-    click_on 'Aceitar'
+    click_link 'Aceitar'
 
     expect(page).not_to have_link('Aceitar')
     expect(page).not_to have_link('Recusar')
@@ -69,7 +69,7 @@ feature 'User view invites' do
 
     login_as user, scope: :user
     visit received_invites_user_path(user)
-    click_on 'Recusar'
+    click_link 'Recusar'
 
     expect(page).not_to have_link('Aceitar')
     expect(page).not_to have_link('Recusar')

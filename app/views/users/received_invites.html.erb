@@ -6,8 +6,8 @@
     <% if invite.invite_respond.nil? %>
     <p>
       <%= link_to invite.event.title %>
-      <%= link_to 'Aceitar', accept_invite_user_path %>
-      <%= link_to 'Recusar', decline_invite_user_path %>
+      <%= link_to 'Aceitar', accept_invite_user_path(invite) %>
+      <%= link_to 'Recusar', decline_invite_user_path(invite) %>
     </p>
     <% end %>
   <% end %>
