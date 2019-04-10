@@ -13,3 +13,7 @@
 .form-inputs {
   text-align: left;
 }
+
+.alert-notice {
+  @extend .alert-info
+}

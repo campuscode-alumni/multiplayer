@@ -1,5 +1,11 @@
 <h2><%= @event.title %></h2>
 
+<br>
+  <div>
+    <p><%= @event.description %></p>
+  </div> 
+<br>
+
 <p>Data: <%= l @event.event_date %></p>
 <p>Local: <%= @event.event_location %></p>
 <p><%= "Total Participantes: #{@event.event_participations.count}" %></p>
