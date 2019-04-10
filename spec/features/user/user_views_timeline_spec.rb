@@ -128,8 +128,8 @@ feature 'User views timeline' do
     login_as(user, scope: :user)
     visit root_path
 
-    expect(page).not_to have_link(tarde_gba.title)
-    expect(page).not_to have_link(sprun_night.title)
+    expect(page).not_to have_content(tarde_gba.title)
+    expect(page).not_to have_content(sprun_night.title)
     expect(page).to have_content(text)
     expect(page).to have_link('Movimente sua comunidade! Crie um Evento!')
   end

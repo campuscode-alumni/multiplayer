@@ -38,13 +38,22 @@
               <% if event.event_participations.count == event.user_limit %>
                 <%= image_tag('/assets/events/full_attendance.png', title: t(:full_attendance)) %>
               <% end %>
+              <p><%= event.description %> %></p>
               <p><%= "Criado por: #{event.user.nickname}" %></p>
               <%= link_to 'Ver detalhes', event %>
             </div>
           </div>
         <% end %>
       </div>
+    <% else %>
+      <br>
+      <p>
+      <%= t('no_upcoming_events') %>
+      </p>
+      <p>
+      <%= link_to t('create.amused_event'), new_event_path %>
+      </p>
+      <br>
     <% end %>
-  </div>
   </div>
 <% end %>
