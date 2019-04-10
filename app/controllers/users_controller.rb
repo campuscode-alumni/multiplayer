@@ -30,7 +30,9 @@ class UsersController < ApplicationController
   end
 
   def received_invites
-    @received_invites = EventInvite.where(invitee: current_user, invite_respond: nil)
+    @received_invites = EventInvite.where(
+      invitee: current_user, invite_respond: nil
+    )
   end
 
   def accept_invite

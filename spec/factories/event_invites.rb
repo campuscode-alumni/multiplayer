@@ -5,7 +5,7 @@ FactoryBot.define do
     association :invitee, factory: :user
 
     trait :approved do
-      invite_respond {:approved}
+      invite_respond { :approved }
     end
   end
 end
