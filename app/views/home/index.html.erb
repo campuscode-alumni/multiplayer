@@ -8,16 +8,33 @@
 
       <% if @events.any? %>
         <% @events.each do |event| %>
-          <div>
+          <div class="card ml-3 mt-3" style="width: 20rem;">
             <p>
-            <span>
-              <%= link_to event.title, event_path(event) %>
-            </span>
-            <% if event.event_participations.count == event.user_limit %>
-              <%= image_tag('/assets/events/full_attendance.png', title: t(:full_attendance)) %>
-            <% end %>
+              <span>
+                <%= link_to event.title, event_path(event) %>
+              </span>
+              <% if event.event_participations.count == event.user_limit %>
+                <%= image_tag('/assets/events/full_attendance.png', title: t(:full_attendance)) %>
+              <% end %>
             </p>
-            <p><%= "Criado por: #{event.user.nickname}" %></p>
+
+            <% if event.game_platform.game.photo.attached? %>
+              <div class="card-img">
+                <%= image_tag event.game_platform.game.photo.variant(resize: '200x'), class: '' %>
+              </div>
+              <div class="card-body">
+                <p>
+                  <%= event.description %>
+                </p>
+                <p>
+                  Participantes: <%= "#{event.event_participations.count}/#{event.user_limit}" %>
+                </p>
+              </div>
+            <% end %>
+            
+            <p>
+              <%= "Criado por: #{event.user.nickname}" %>
+            </p>
           </div>
         <% end %>
       <% else %>
@@ -38,10 +55,10 @@
       <% if @games.any? %>
         <div class="row">
           <% @games.each do |game| %>
-            <div class="card ml-3 mt-3" style="width: 20rem;">
+            <div class="card ml-3 mt-3" style="width: 10rem;">
               <% if game.photo.attached? %>
                 <div class="card-img">
-                  <%= image_tag game.photo.variant(resize: '240x'), class: '' %>
+                  <%= image_tag game.photo.variant(resize: '160x'), class: '' %>
                 </div>
                 <div class="card-body"></div>
                 <div class="card-footer">
