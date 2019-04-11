@@ -7,7 +7,10 @@ Rails.application.routes.draw do
   resources :categories, only: %i[index show new create]
   resources :companies, only: %i[new create]
   resources :events, only: %i[index show new create] do
-    member {post :invite}
+    member do
+      post :invite
+      post :event_request
+    end
   end
 
   resources :games, only: %i[new create show] do

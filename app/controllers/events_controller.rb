@@ -15,6 +15,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @event_request = EventRequest.where(user: current_user)
   end
 
   def invite
@@ -28,7 +29,20 @@ class EventsController < ApplicationController
     redirect_to @event
   end
 
+  def event_request
+    @user = User.find(params[:id])
+    @event = Event.find(params[:id])
+    @request = create_event_request
+    @request.sent!
+    flash[:notice] = 'Pedido de participação enviado com sucesso!'
+    redirect_to event_path(@event)
+  end
+
   private
+
+  def create_event_request
+    EventRequest.create(event: @event, user: current_user, event_owner: @user)
+  end
 
   def event_params
     params.require(:event).permit(

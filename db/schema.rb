@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_10_130328) do
+ActiveRecord::Schema.define(version: 2019_04_11_090128) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -93,6 +93,18 @@ ActiveRecord::Schema.define(version: 2019_04_10_130328) do
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_event_participations_on_event_id"
     t.index ["user_id"], name: "index_event_participations_on_user_id"
+  end
+
+  create_table "event_requests", force: :cascade do |t|
+    t.integer "event_id"
+    t.integer "user_id"
+    t.integer "event_owner_id"
+    t.integer "request_status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_event_requests_on_event_id"
+    t.index ["event_owner_id"], name: "index_event_requests_on_event_owner_id"
+    t.index ["user_id"], name: "index_event_requests_on_user_id"
   end
 
   create_table "events", force: :cascade do |t|
