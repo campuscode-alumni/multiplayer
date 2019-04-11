@@ -15,7 +15,8 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @event_request = EventRequest.where(user: current_user)
+    @event_requests = EventRequest.where(user: current_user)
+    @my_requests = EventRequest.where(event_owner: current_user)
   end
 
   def invite

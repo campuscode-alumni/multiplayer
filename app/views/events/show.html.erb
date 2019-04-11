@@ -11,7 +11,16 @@
 <p><%= "Total Participantes: #{@event.event_participations.count}" %></p>
 <p><%= "Máximo Participantes: #{@event.user_limit}" %></p>
 
-<% if !@event_request.any? %>
+<% if current_user == @event.user %>
+  <h2>Pedidos de participação</h2>
+  <% @my_requests.each do |r| %>
+    <p>
+      <%= r.user.name %>
+      <%= link_to 'Aceitar' %>
+      <%= link_to 'Recusar' %>
+    </p>
+  <% end %>
+<% elsif !@event_requests.any? %>
   <% if !(@event.event_participations.count >= @event.user_limit) %>
     <p>
       <%= link_to 'Pedir para participar deste evento', event_request_event_path, method: :post %>
