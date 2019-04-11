@@ -8,7 +8,7 @@
 <div class="mt-4">
   <% if @events&.any? %>
     <% @events.each do |event| %>
-      <p><%= event.title %></p>
+      <p><%= link_to event.title, event_path(event) %></p>
     <% end %>
     <%= t('found.events', count: @events.count) %>
   <% else %>

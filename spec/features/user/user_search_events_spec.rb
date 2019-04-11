@@ -51,4 +51,20 @@ feature 'User search events' do
     expect(page).not_to have_css('p', text: event.title)
     expect(page).to have_content('Nenhum evento encontrado')
   end
+
+  scenario 'and view event' do
+    user1 = create(:user)
+    user2 = create(:user)
+    event = create(:event, user: user2)
+
+    login_as user1, scope: :user
+    visit root_path
+    click_on 'Encontrar Eventos'
+    fill_in 'Procurar por:', with: event.title
+    click_on 'Pesquisar'
+    click_on event.title
+
+    expect(current_path).to eq event_path(event)
+    expect(page).to have_css('h2', text: event.title)
+  end
 end
