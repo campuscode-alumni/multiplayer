@@ -16,7 +16,10 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @event_requests = EventRequest.where(user: current_user)
-    @my_requests = EventRequest.where(event_owner: current_user)
+    @my_requests = EventRequest.where(
+      event_owner: current_user,
+      request_status: nil
+    )
   end
 
   def invite
@@ -39,7 +42,29 @@ class EventsController < ApplicationController
     redirect_to event_path(@event)
   end
 
+  def accept_request
+    @user = User.find(params[:id])
+    @event = Event.find(params[:id])
+    approved_request
+    EventParticipation.create(event: @event_request.event, user: @user)
+    flash[:notice] = 'Pedido aceito com sucesso!'
+    redirect_to event_path(@event)
+  end
+
+  def decline_request
+    @event = Event.find(params[:id])
+    @event_request = EventRequest.find(params[:id])
+    @event_request.declined!
+    flash[:notice] = 'Pedido recusado com sucesso!'
+    redirect_to event_path(@event)
+  end
+
   private
+
+  def approved_request
+    @event_request = EventRequest.find(params[:id])
+    @event_request.approved!
+  end
 
   def create_event_request
     EventRequest.create(event: @event, user: current_user, event_owner: @user)

@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :events, only: %i[index show new create] do
     member do
       post :invite
+      post :accept_request
+      post :decline_request
       post :event_request
     end
   end

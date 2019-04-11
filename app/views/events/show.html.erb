@@ -16,8 +16,8 @@
   <% @my_requests.each do |r| %>
     <p>
       <%= r.user.name %>
-      <%= link_to 'Aceitar' %>
-      <%= link_to 'Recusar' %>
+      <%= link_to 'Aceitar', accept_request_event_path, method: :post %>
+      <%= link_to 'Recusar', decline_request_event_path, method: :post %>
     </p>
   <% end %>
 <% elsif !@event_requests.any? %>
