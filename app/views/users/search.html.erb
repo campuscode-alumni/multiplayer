@@ -1,0 +1,17 @@
+<h1><%= t('search.users') %></h1>
+
+<%= simple_form_for :search, url: search_users_path, method: :get do |f| %>
+  <%= f.input :q, label: t('search.for') %>
+  <%= f.submit t('search.submit'), class: 'btn btn-primary' %>
+<% end %>
+
+<div class="mt-4">
+  <% if @users&.any? %>
+    <% @users.each do |user| %>
+      <%= link_to user.email %>
+    <% end %>
+    <%= t('found.users', count: @users.count) %>
+  <% else %>
+    <%= t('not.found.users') %>
+  <% end %>
+</div>

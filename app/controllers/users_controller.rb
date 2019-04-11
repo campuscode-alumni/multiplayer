@@ -50,6 +50,12 @@ class UsersController < ApplicationController
     redirect_to received_invites_user_path(current_user)
   end
 
+  def search
+    search_param = params[:search]
+    return if search_param.blank?
+    @users = User.where('email like ?', "%#{search_param[:q]}%")
+  end
+
   private
 
   def params_user

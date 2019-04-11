@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: %i[edit update show] do
+    collection {get :search}
+    
     member do
       get :received_invites
       post :accept_invite
