@@ -4,14 +4,15 @@ end
 
 user1 = User.find_by(email: 'user@user.com')
 if user1.nil?
-  User.create(name: 'user', email: 'user@user.com', password: '123456', nickname: 'fire-user')
+  user1 = User.create(name: 'user', email: 'user@user.com', password: '123456', nickname: 'fire-user')
 end
 user2 = User.find_by(email: 'user2@user.com')
 if user2.nil?
-  User.create(name: 'user 2', email: 'user2@user.com', password: '123456', nickname: 'air-user')
+  user2 = User.create(name: 'user 2', email: 'user2@user.com', password: '123456', nickname: 'air-user')
 end
-if !User.find_by(email: 'user3@user.com')
-  User.create(name: 'user 3', email: 'user3@user.com', password: '123456', nickname: 'water-user')
+user3 = User.find_by(email: 'user3@user.com')
+if user3.nil?
+  user3 = User.create(name: 'user 3', email: 'user3@user.com', password: '123456', nickname: 'water-user')
 end
 if !User.find_by(email: 'user4@user.com')
   User.create(name: 'user 4', email: 'user4@user.com', password: '123456', nickname: 'soil-user')
@@ -109,21 +110,22 @@ end
 
 bomberman = Game.find_by(name: 'Super Bomberman')
 if bomberman.nil?
-  game = Game.new(name: 'Super Bomberman', release_year: 1993)
-  game.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'bomberman.jpg')), filename: 'bomberman.jpg')
-  game.save
-  GamePlatform.create(game: game, platform: snes)
-  CategoryGame.create(category: Category.find_by(name: 'Ação'), game: game)
-  CategoryGame.create(category: Category.find_by(name: 'Aventura'), game: game)
+  bomberman = Game.new(name: 'Super Bomberman', release_year: 1993)
+  bomberman.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'bomberman.jpg')), filename: 'bomberman.jpg')
+  bomberman.save
+  GamePlatform.create(game: bomberman, platform: snes)
+  CategoryGame.create(category: Category.find_by(name: 'Ação'), game: bomberman)
+  CategoryGame.create(category: Category.find_by(name: 'Aventura'), game: bomberman)
 end
 
-if !Game.find_by(name: 'Mega Man X')
-  game = Game.new(name: 'Mega Man X', release_year: 1994)
-  game.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'megamanx.jpg')), filename: 'megamanx.jpg')
-  game.save
-  GamePlatform.create(game: game, platform: snes)
-  CategoryGame.create(category: Category.find_by(name: 'Ação'), game: game)
-  CategoryGame.create(category: Category.find_by(name: 'Plataforma'), game: game)
+megaman = Game.find_by(name: 'Mega Man X')
+if !megaman.nil?
+  megaman = Game.new(name: 'Mega Man X', release_year: 1994)
+  megaman.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'megamanx.jpg')), filename: 'megamanx.jpg')
+  megaman.save
+  GamePlatform.create(game: megaman, platform: snes)
+  CategoryGame.create(category: Category.find_by(name: 'Ação'), game: megaman)
+  CategoryGame.create(category: Category.find_by(name: 'Plataforma'), game: megaman)
 end
 
 if !Game.find_by(name: 'Streets of Rage')
@@ -144,15 +146,15 @@ end
 
 dark_souls = Game.find_by(name: 'Dark Souls')
 if dark_souls.nil?
-  game = Game.new(name: 'Dark Souls', release_year: 2011)
-  game.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'darksouls.jpg')), filename: 'darksouls.jpg')
-  game.save
-  GamePlatform.create(game: game, platform: Platform.find_by(name: 'Playstation 4'))
-  GamePlatform.create(game: game, platform: Platform.find_by(name: 'X Box One'))
-  GamePlatform.create(game: game, platform: Platform.find_by(name: 'Nintendo Switch'))
-  CategoryGame.create(category: Category.find_by(name: 'Ação'), game: game)
-  CategoryGame.create(category: Category.find_by(name: 'RPG'), game: game)
-  CategoryGame.create(category: Category.find_by(name: 'Dungeon Crawl'), game: game)
+  dark_souls = Game.new(name: 'Dark Souls', release_year: 2011)
+  dark_souls.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'darksouls.jpg')), filename: 'darksouls.jpg')
+  dark_souls.save
+  GamePlatform.create(game: dark_souls, platform: Platform.find_by(name: 'Playstation 4'))
+  GamePlatform.create(game: dark_souls, platform: Platform.find_by(name: 'X Box One'))
+  GamePlatform.create(game: dark_souls, platform: Platform.find_by(name: 'Nintendo Switch'))
+  CategoryGame.create(category: Category.find_by(name: 'Ação'), game: dark_souls)
+  CategoryGame.create(category: Category.find_by(name: 'RPG'), game: dark_souls)
+  CategoryGame.create(category: Category.find_by(name: 'Dungeon Crawl'), game: dark_souls)
 end
 
 today = Time.zone.today
@@ -179,7 +181,23 @@ if !Event.find_by(title: 'Batalha explosiva de Bomberman')
     event_date: today + 3.days,
     user_limit: 5,
     event_type: :presential,
-    event_location: 'Alameda Santos, 1293'
+    event_location: 'Rua Voluntários da Pátria, 1000'
   )
   EventParticipation.create(event: event2, user: user2)
+end
+
+if !Event.find_by(title: 'Speedrun Mega Man X')
+  event3 = Event.create(
+    user: user3,
+    title: 'Speedrun Mega Man X',
+    game_platform: GamePlatform.find_by(game: megaman, platform: snes),
+    description: 'Observar um jogador muito habilidoso completar este game em tempo recorde',
+    event_date: today + 5.days,
+    user_limit: 4,
+    event_type: :presential,
+    event_location: 'Rua Barra Funda, 500'
+  )
+  EventParticipation.create(event: event3, user: user3)
+  #EventInvite.create(event: event3, user: user3, invitee: user1)
+  #EventInvite.create(event: event3, user: user3, invitee: user2)
 end
