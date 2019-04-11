@@ -5,17 +5,26 @@ end
 user1 = User.find_by(email: 'user@user.com')
 if user1.nil?
   user1 = User.create(name: 'user', email: 'user@user.com', password: '123456', nickname: 'fire-user')
+  user1.avatar.attach(io: File.open(Rails.root.join('spec', 'support', 'fire.png')), filename: 'fire.png')
+  user1.save
 end
 user2 = User.find_by(email: 'user2@user.com')
 if user2.nil?
   user2 = User.create(name: 'user 2', email: 'user2@user.com', password: '123456', nickname: 'air-user')
+  user2.avatar.attach(io: File.open(Rails.root.join('spec', 'support', 'air.png')), filename: 'air.png')
+  user2.save
 end
 user3 = User.find_by(email: 'user3@user.com')
 if user3.nil?
   user3 = User.create(name: 'user 3', email: 'user3@user.com', password: '123456', nickname: 'water-user')
+  user3.avatar.attach(io: File.open(Rails.root.join('spec', 'support', 'water.png')), filename: 'water.png')
+  user3.save
 end
-if !User.find_by(email: 'user4@user.com')
-  User.create(name: 'user 4', email: 'user4@user.com', password: '123456', nickname: 'soil-user')
+user4 = User.find_by(email: 'user4@user.com')
+if user4.nil?
+  user4 = User.create(name: 'user 4', email: 'user4@user.com', password: '123456', nickname: 'earth-user')
+  user4.avatar.attach(io: File.open(Rails.root.join('spec', 'support', 'earth.png')), filename: 'earth.png')
+  user4.save
 end
 
 if (!City.find_by(name: 'São Paulo'))
@@ -75,10 +84,11 @@ if !Platform.find_by(name: 'Nintendo Switch')
   p.save
 end
 
-if !Platform.find_by(name: 'Playstation 4')
-  p = Platform.new(name: 'Playstation 4', company: Company.find_by(name: 'Sony'))
-  p.logo.attach(io: File.open(Rails.root.join('spec', 'support', 'ps4.png')), filename: 'ps4.png')
-  p.save
+playstation4 = Platform.find_by(name: 'Playstation 4')
+if playstation4.nil?
+  playstation4 = Platform.new(name: 'Playstation 4', company: Company.find_by(name: 'Sony'))
+  playstation4.logo.attach(io: File.open(Rails.root.join('spec', 'support', 'ps4.png')), filename: 'ps4.png')
+  playstation4.save
 end
 
 if !Platform.find_by(name: 'X Box One')
@@ -89,14 +99,12 @@ end
 
 # categorias
 
-def create_category(name)
+categories = ['RPG', 'FPS', 'Plataforma', 'Esporte', 'Aventura', 'Ação', 'Beat \'em Up', 'Dungeon Crawl']
+categories.each do |name|
   if !Category.find_by(name: name)
     Category.create(name: name)
   end
 end
-
-categories = ['RPG', 'FPS', 'Plataforma', 'Esporte', 'Aventura', 'Ação', 'Beat \'em Up', 'Dungeon Crawl']
-categories.each { |c| create_category(c) }
 
 # todo games
 
@@ -119,7 +127,7 @@ if bomberman.nil?
 end
 
 megaman = Game.find_by(name: 'Mega Man X')
-if !megaman.nil?
+if megaman.nil?
   megaman = Game.new(name: 'Mega Man X', release_year: 1994)
   megaman.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'megamanx.jpg')), filename: 'megamanx.jpg')
   megaman.save
@@ -136,12 +144,13 @@ if !Game.find_by(name: 'Streets of Rage')
   CategoryGame.create(category: Category.find_by(name: 'Beat \'em Up'), game: game)
 end
 
-if !Game.find_by(name: 'Sonic the Hedgehog')
-  game = Game.new(name: 'Sonic the Hedgehog', release_year: 1991)
-  game.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'sonic.jpg')), filename: 'sonic.jpg')
-  game.save
-  GamePlatform.create(game: game, platform: megadrive)
-  CategoryGame.create(category: Category.find_by(name: 'Plataforma'), game: game)
+sonic = Game.find_by(name: 'Sonic the Hedgehog')
+if sonic.nil?
+  sonic = Game.new(name: 'Sonic the Hedgehog', release_year: 1991)
+  sonic.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'sonic.jpg')), filename: 'sonic.jpg')
+  sonic.save
+  GamePlatform.create(game: sonic, platform: megadrive)
+  CategoryGame.create(category: Category.find_by(name: 'Plataforma'), game: sonic)
 end
 
 dark_souls = Game.find_by(name: 'Dark Souls')
@@ -149,7 +158,7 @@ if dark_souls.nil?
   dark_souls = Game.new(name: 'Dark Souls', release_year: 2011)
   dark_souls.photo.attach(io: File.open(Rails.root.join('spec', 'support', 'darksouls.jpg')), filename: 'darksouls.jpg')
   dark_souls.save
-  GamePlatform.create(game: dark_souls, platform: Platform.find_by(name: 'Playstation 4'))
+  GamePlatform.create(game: dark_souls, platform: playstation4)
   GamePlatform.create(game: dark_souls, platform: Platform.find_by(name: 'X Box One'))
   GamePlatform.create(game: dark_souls, platform: Platform.find_by(name: 'Nintendo Switch'))
   CategoryGame.create(category: Category.find_by(name: 'Ação'), game: dark_souls)
@@ -162,7 +171,7 @@ if !Event.find_by(title: 'Noite difícil com Dark Souls')
   event1 = Event.create(
     user: user1,
     title: 'Noite difícil com Dark Souls',
-    game_platform: GamePlatform.find_by(game: dark_souls, platform: Platform.find_by(name: 'Playstation 4')),
+    game_platform: GamePlatform.find_by(game: dark_souls, platform: playstation4),
     description: 'Se divertir vendo as outras pessoas sofrendo para completar o game',
     event_date: today + 2.days,
     user_limit: 4,
@@ -200,4 +209,21 @@ if !Event.find_by(title: 'Speedrun Mega Man X')
   EventParticipation.create(event: event3, user: user3)
   #EventInvite.create(event: event3, user: user3, invitee: user1)
   #EventInvite.create(event: event3, user: user3, invitee: user2)
+end
+
+if !Event.find_by(title: 'Jogar Sonic')
+  event4 = Event.create(
+    user: user4,
+    title: 'Jogar Sonic',
+    game_platform: GamePlatform.find_by(game: sonic, platform: megadrive),
+    description: 'Jogar Sonic e coletar 10 mil argolas, revezando entre os jogadores',
+    event_date: today + 1.days,
+    user_limit: 4,
+    event_type: :presential,
+    event_location: 'Rua Domingos de Morais, 2200'
+  )
+  EventParticipation.create(event: event4, user: user4)
+  #EventInvite.create(event: event4, user: user4, invitee: user1)
+  #EventInvite.create(event: event4, user: user4, invitee: user2)
+  #EventInvite.create(event: event4, user: user4, invitee: user3)
 end
