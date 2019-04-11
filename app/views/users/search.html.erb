@@ -8,7 +8,11 @@
 <div class="mt-4">
   <% if @users&.any? %>
     <% @users.each do |user| %>
-      <%= link_to user.email %>
+      <p>
+        <%= user.nickname %> 
+        <%= user.email %> 
+        <%= link_to 'Ver Perfil', user_path(user.id) %>
+      </p>
     <% end %>
     <%= t('found.users', count: @users.count) %>
   <% else %>

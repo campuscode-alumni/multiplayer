@@ -19,7 +19,6 @@ class User < ApplicationRecord
            foreign_key: :invitee_id,
            dependent: :destroy,
            inverse_of: :invitee
-           
 
   has_one_attached :avatar
 

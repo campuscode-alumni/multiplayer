@@ -6,8 +6,10 @@
   <% end %>
   <h2><%= @user.nickname %></h2>
 
-  <%= @user.state.name %>
-  <%= @user.city.name %>
+  <% if @user.state && @user.city %>
+    <%= @user.state.name %>
+    <%= @user.city.name %>
+  <% end %>
 </div>
 
 <div>

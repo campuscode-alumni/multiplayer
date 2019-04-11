@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   def invite
@@ -53,7 +53,9 @@ class UsersController < ApplicationController
   def search
     search_param = params[:search]
     return if search_param.blank?
-    @users = User.where('email like ?', "%#{search_param[:q]}%")
+
+    @users = User.where('email like :search_term OR nickname like :search_term',
+                        search_term: "%#{search_param[:q]}%")
   end
 
   private
