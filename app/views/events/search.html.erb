@@ -1,0 +1,17 @@
+<h1><%= t('search.events') %></h1>
+
+<%= simple_form_for :search, url: search_events_path, method: :get do |f| %>
+  <%= f.input :q, label: t('search.for') %>
+  <%= f.submit t('search.submit'), class: 'btn btn-primary' %>
+<% end %>
+
+<div class="mt-4">
+  <% if @events&.any? %>
+    <% @events.each do |event| %>
+      <p><%= event.title %></p>
+    <% end %>
+    <%= t('found.events', count: @events.count) %>
+  <% else %>
+    <%= t('not.found.events') %>
+  <% end %>
+</div>

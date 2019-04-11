@@ -32,6 +32,7 @@ pt-BR:
     for: 'Procurar por:'
     submit: 'Pesquisar'
     users: 'Pesquisar Usuários'
+    events: 'Pesquisar Eventos'
   found:
     games:
       one: "Foi encontrado %{count} jogo"
@@ -39,10 +40,14 @@ pt-BR:
     users:
       one: "Foi encontrado %{count} usuário"
       other: "Foram encontrados %{count} usuários"
+    events:
+      one: "Foi encontrado %{count} evento"
+      other: "Foram encontrados %{count} eventos"
   not:
     found:
       games: 'Nenhum jogo encontrado'
       users: 'Nenhum usuário encontrado'
+      events: 'Nenhum evento encontrado'
   add:
     to_my_profile: 'Adicionar ao meu Perfil'
     games:

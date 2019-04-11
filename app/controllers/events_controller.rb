@@ -59,6 +59,13 @@ class EventsController < ApplicationController
     redirect_to event_path(@event)
   end
 
+  def search
+    search_param = params[:search]
+    return if search_param.blank?
+
+    @events = Event.where('title like ?', "%#{search_param[:q]}%")
+  end
+
   private
 
   def approved_request

@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :categories, only: %i[index show new create]
   resources :companies, only: %i[new create]
   resources :events, only: %i[index show new create] do
+    collection {get :search}
+
     member do
       post :invite
       post :accept_request
