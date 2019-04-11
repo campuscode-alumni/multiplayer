@@ -25,11 +25,12 @@
     <%= link_to t('add.games.to_profile'), search_games_path %>
   </p>
 </div>
-
-<div>
+<% if user_signed_in? && current_user != @user %>
+<div id="invite_to_event">
   <%= simple_form_for @user, url: invite_user_path, method: :post do |f| %>
     <%= label_tag :event_id, t('form.new.invite.event') %>
     <%= select_tag :event_id, options_for_select(current_user.event_options) %>
     <%= f.submit t('form.new.invite.submit') %>
   <% end %>
 </div>
+<% end %>
